@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "tanstack-router-module-federation",
   "private": true,
   "scripts": {
     "build": "turbo run build",
