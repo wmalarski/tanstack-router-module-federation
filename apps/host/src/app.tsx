@@ -1,4 +1,63 @@
+import {
+  createRootRoute,
+  createRoute,
+  createRouter,
+  Link,
+  Outlet,
+  RouterProvider,
+} from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
+
+const rootRoute = createRootRoute({
+  component: () => (
+    <>
+      <div className="flex gap-2 p-2">
+        <Link to="/" className="[&.active]:font-bold">
+          Home
+        </Link>{" "}
+        <Link to="/about" className="[&.active]:font-bold">
+          About
+        </Link>
+      </div>
+      <hr />
+      <Outlet />
+    </>
+  ),
+});
+
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/",
+  component: function Index() {
+    return (
+      <div className="p-2">
+        <h3>Welcome Home!</h3>
+      </div>
+    );
+  },
+});
+
+const aboutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/about",
+  component: function About() {
+    return <div className="p-2">Hello from About!</div>;
+  },
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
+
+const router = createRouter({
+  routeTree,
+  defaultPreload: "intent",
+  scrollRestoration: true,
+});
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
 
 const Tags = lazy(
   // @ts-ignore
@@ -13,6 +72,7 @@ const Todos = lazy(
 export const App = () => {
   return (
     <>
+      <RouterProvider router={router} />
       <div className="host">
         <div className="card">
           <div className="icon">
