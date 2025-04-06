@@ -18,7 +18,7 @@ export default defineConfig(() => {
         filename: "remoteEntry.js",
         name: "tags",
         exposes: {
-          "./tags-app": "./src/app.tsx",
+          "./tags-router": "./src/router.tsx",
         },
         remotes: {},
         shared: {

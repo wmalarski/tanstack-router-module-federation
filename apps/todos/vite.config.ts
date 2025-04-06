@@ -18,7 +18,7 @@ export default defineConfig(() => {
         filename: "remoteEntry.js",
         name: "todos",
         exposes: {
-          "./todos-app": "./src/app.tsx",
+          "./todos-router": "./src/router.tsx",
         },
         remotes: {},
         shared: {

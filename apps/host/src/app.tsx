@@ -2,7 +2,6 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
-  lazyRouteComponent,
   Link,
   Outlet,
   RouterProvider,
@@ -15,7 +14,7 @@ const rootRoute = createRootRoute({
         <Link to="/" className="[&.active]:font-bold">
           Home
         </Link>{" "}
-        <Link to="/about" className="[&.active]:font-bold">
+        <Link to="/tags" className="[&.active]:font-bold">
           About
         </Link>
       </div>
@@ -29,15 +28,13 @@ const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
   // @ts-ignore
-  component: lazyRouteComponent(() => import("todos/todos-app")),
-});
+}).lazy(() => import("todos/todos-router").then((module) => module.Route));
 
 const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/about",
+  path: "/tags",
   // @ts-ignore
-  component: lazyRouteComponent(() => import("tags/tags-app")),
-});
+}).lazy(() => import("tags/tags-router").then((module) => module.Route));
 
 const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
 
