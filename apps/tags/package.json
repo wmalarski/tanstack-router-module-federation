@@ -11,12 +11,12 @@
     "typescript": "5.8.3",
     "vite": "6.2.5"
   },
-  "name": "module-federation-vite-react-host",
+  "name": "module-federation-vite-react-tags",
   "scripts": {
     "build": "tsc && vite build",
     "check-types": "tsc --noEmit",
-    "dev": "vite --port 4173",
-    "start": "npm run build && vite preview --port 4173"
+    "dev": "vite --port 4174",
+    "start": "npm run build && vite preview --port 4174"
   },
   "type": "module",
   "version": "0.0.0"

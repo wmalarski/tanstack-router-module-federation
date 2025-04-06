@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 import { dependencies } from "./package.json";
 
 export default defineConfig(() => ({
-  server: { fs: { allow: [".", "../shared"] } },
+  // server: { fs: { allow: [".", "../shared"] } },
   build: {
     target: "chrome89",
   },
@@ -12,11 +12,18 @@ export default defineConfig(() => ({
     federation({
       name: "host",
       remotes: {
-        remote: {
+        tags: {
           type: "module",
-          name: "remote",
+          name: "tags",
           entry: "http://localhost:4174/remoteEntry.js",
-          entryGlobalName: "remote",
+          entryGlobalName: "tags",
+          shareScope: "default",
+        },
+        todos: {
+          type: "module",
+          name: "todos",
+          entry: "http://localhost:4175/remoteEntry.js",
+          entryGlobalName: "todos",
           shareScope: "default",
         },
       },

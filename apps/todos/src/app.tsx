@@ -1,15 +1,3 @@
-import { lazy, Suspense } from "react";
-
-const Tags = lazy(
-  // @ts-ignore
-  async () => import("tags/tags-app"),
-);
-
-const Todos = lazy(
-  // @ts-ignore
-  async () => import("todos/todos-app"),
-);
-
 export const App = () => {
   return (
     <>
@@ -31,16 +19,9 @@ export const App = () => {
               />
             </svg>
           </div>
-          <div className="title">I'm the host app</div>
+          <div className="title">I'm the todos app</div>
         </div>
       </div>
-
-      <Suspense fallback="loading...">
-        <Tags />
-      </Suspense>
-      <Suspense fallback="loading...">
-        <Todos />
-      </Suspense>
     </>
   );
 };
