@@ -44,6 +44,8 @@ export const router = createRouter({
   scrollRestoration: true,
 });
 
+// export const getRouter
+
 export const App = () => {
   return <RouterProvider router={router} />;
 };
