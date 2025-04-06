@@ -1,5 +1,6 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  createRootRoute,
+  createRootRouteWithContext,
   createRoute,
   createRouter,
   Link,
@@ -7,7 +8,9 @@ import {
   RouterProvider,
 } from "@tanstack/react-router";
 
-const rootRoute = createRootRoute({
+const rootRoute = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   component: () => (
     <>
       <div className="flex gap-2 p-2">
@@ -38,14 +41,21 @@ const aboutRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
 
+const queryClient = new QueryClient();
+
 export const router = createRouter({
   routeTree,
   defaultPreload: "intent",
   scrollRestoration: true,
+  context: {
+    queryClient,
+  },
 });
 
-// export const getRouter
-
 export const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 };
