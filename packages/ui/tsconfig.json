@@ -3,6 +3,6 @@
     "outDir": "dist"
   },
   "exclude": ["node_modules", "dist"],
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "@trmf/typescript-config/react-library.json",
   "include": ["src"]
 }

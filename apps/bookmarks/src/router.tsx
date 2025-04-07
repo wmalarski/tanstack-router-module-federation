@@ -11,18 +11,18 @@ export const Route = createLazyRoute("/")({
 
 // const todoRoute = createRoute({
 //   getParentRoute: () => Route,
-//   path: "/todos/$todoId",
+//   path: "/bookmarks/$todoId",
 // });
 
 type GetRouteArgs = {
   rootRoute: RootRoute;
 };
 
-export const getTodosRouter = ({ rootRoute }: GetRouteArgs) => {
-  const todosRoute = createRoute({
+export const getBookmarksRouter = ({ rootRoute }: GetRouteArgs) => {
+  const route = createRoute({
     getParentRoute: () => rootRoute,
     path: "/",
   });
 
-  return todosRoute;
+  return route;
 };

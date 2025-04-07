@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "name": "@repo/typescript-config",
+  "name": "@trmf/typescript-config",
   "private": true,
   "publishConfig": {
     "access": "public"

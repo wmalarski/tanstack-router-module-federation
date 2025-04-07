@@ -8,6 +8,7 @@
     "tailwindcss": "^4.1.3"
   },
   "devDependencies": {
+    "@trmf/typescript-config": "workspace:*",
     "@module-federation/vite": "1.2.6",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
@@ -15,7 +16,7 @@
     "typescript": "5.8.3",
     "vite": "6.2.5"
   },
-  "name": "module-federation-vite-react-todos",
+  "name": "@trmf/bookmarks",
   "scripts": {
     "build": "tsc && vite build",
     "check-types": "tsc --noEmit",

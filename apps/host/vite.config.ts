@@ -20,11 +20,11 @@ export default defineConfig(() => ({
           entryGlobalName: "tags",
           shareScope: "default",
         },
-        todos: {
+        bookmarks: {
           type: "module",
-          name: "todos",
+          name: "bookmarks",
           entry: "http://localhost:4175/remoteEntry.js",
-          entryGlobalName: "todos",
+          entryGlobalName: "bookmarks",
           shareScope: "default",
         },
       },

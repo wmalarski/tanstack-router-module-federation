@@ -31,8 +31,10 @@ const rootRoute = createRootRouteWithContext<{
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
+}).lazy(() =>
   // @ts-ignore
-}).lazy(() => import("todos/todos-router").then((module) => module.Route));
+  import("bookmarks/bookmarks-router").then((module) => module.Route),
+);
 
 const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
