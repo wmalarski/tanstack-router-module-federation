@@ -7,17 +7,18 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
+import "./app.css";
 
 const rootRoute = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   component: () => (
     <>
-      <div className="flex gap-2 p-2">
-        <Link to="/" className="[&.active]:font-bold">
+      <div className="host:flex host:gap-2 host:p-2">
+        <Link to="/" className="host:[&.active]:font-bold">
           Home
         </Link>{" "}
-        <Link to="/tags" className="[&.active]:font-bold">
+        <Link to="/tags" className="host:[&.active]:font-bold">
           About
         </Link>
       </div>
