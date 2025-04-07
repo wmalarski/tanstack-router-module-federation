@@ -17,10 +17,10 @@
     "tailwindcss": "^4.1.3"
   },
   "exports": {
-    "./globals.css": "./src/styles/globals.css",
-    "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
-    "./hooks/*": "./src/hooks/*.ts"
+    "./globals.css": "./src/styles/globals.css",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./lib/*": "./src/lib/*.ts"
   },
   "name": "@trmf/ui",
   "private": true,

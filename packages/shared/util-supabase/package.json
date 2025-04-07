@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.49.4"
+  },
+  "devDependencies": {
+    "@trmf/typescript-config": "workspace:*"
+  },
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "name": "@trmf/util-supabase",
+  "private": true,
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "version": "0.0.0"
+}
