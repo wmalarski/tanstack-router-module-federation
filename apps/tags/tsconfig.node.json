@@ -1,10 +1,4 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "composite": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true
-  },
+  "extends": "@trmf/typescript-config/node.json",
   "include": ["vite.config.ts", "module-federation/vite-importmap-shim.ts"]
 }
