@@ -15,10 +15,10 @@ const rootRoute = createRootRouteWithContext<{
   component: () => (
     <>
       <div className="host:flex host:gap-2 host:p-2">
-        <Link to="/" className="host:[&.active]:font-bold">
+        <Link className="host:[&.active]:font-bold" to="/">
           Home
         </Link>{" "}
-        <Link to="/tags" className="host:[&.active]:font-bold">
+        <Link className="host:[&.active]:font-bold" to="/tags">
           About
         </Link>
       </div>
@@ -47,12 +47,12 @@ const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
 const queryClient = new QueryClient();
 
 export const router = createRouter({
-  routeTree,
-  defaultPreload: "intent",
-  scrollRestoration: true,
   context: {
     queryClient,
   },
+  defaultPreload: "intent",
+  routeTree,
+  scrollRestoration: true,
 });
 
 export const App = () => {

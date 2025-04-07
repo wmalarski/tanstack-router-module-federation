@@ -16,11 +16,11 @@ export default defineConfig(() => {
     },
     plugins: [
       federation({
-        filename: "remoteEntry.js",
-        name: "bookmarks",
         exposes: {
           "./bookmarks-router": "./src/router.tsx",
         },
+        filename: "remoteEntry.js",
+        name: "bookmarks",
         remotes: {},
         shared: {
           react: {

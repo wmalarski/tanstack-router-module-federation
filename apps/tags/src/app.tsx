@@ -9,10 +9,10 @@ export const App = () => {
           <div className="title">I'm the tags app</div>
         </div>
       </div>
-      <Link to="/" className="tags:[&.active]:font-bold">
+      <Link className="tags:[&.active]:font-bold" to="/">
         Home
       </Link>{" "}
-      <Link to="/tags" className="tags:[&.active]:font-bold">
+      <Link className="tags:[&.active]:font-bold" to="/tags">
         About
       </Link>
     </>

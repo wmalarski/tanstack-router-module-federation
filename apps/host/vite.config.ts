@@ -11,25 +11,25 @@ export default defineConfig(() => ({
   },
   plugins: [
     federation({
-      name: "host",
-      remotes: {
-        tags: {
-          type: "module",
-          name: "tags",
-          entry: "http://localhost:4174/remoteEntry.js",
-          entryGlobalName: "tags",
-          shareScope: "default",
-        },
-        bookmarks: {
-          type: "module",
-          name: "bookmarks",
-          entry: "http://localhost:4175/remoteEntry.js",
-          entryGlobalName: "bookmarks",
-          shareScope: "default",
-        },
-      },
       exposes: {},
       filename: "remoteEntry.js",
+      name: "host",
+      remotes: {
+        bookmarks: {
+          entry: "http://localhost:4175/remoteEntry.js",
+          entryGlobalName: "bookmarks",
+          name: "bookmarks",
+          shareScope: "default",
+          type: "module",
+        },
+        tags: {
+          entry: "http://localhost:4174/remoteEntry.js",
+          entryGlobalName: "tags",
+          name: "tags",
+          shareScope: "default",
+          type: "module",
+        },
+      },
       shared: {
         react: {
           requiredVersion: dependencies.react,

@@ -9,10 +9,10 @@ export const App = () => {
           <div className="title">I'm the bookmarks app</div>
         </div>
       </div>
-      <Link to="/" className="bookmarks:[&.active]:font-bold">
+      <Link className="bookmarks:[&.active]:font-bold" to="/">
         Home
       </Link>{" "}
-      <Link to="/tags" className="bookmarks:[&.active]:font-bold">
+      <Link className="bookmarks:[&.active]:font-bold" to="/tags">
         About
       </Link>
     </>

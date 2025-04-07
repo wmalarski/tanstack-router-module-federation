@@ -16,11 +16,11 @@ export default defineConfig(() => {
     },
     plugins: [
       federation({
-        filename: "remoteEntry.js",
-        name: "tags",
         exposes: {
           "./tags-router": "./src/router.tsx",
         },
+        filename: "remoteEntry.js",
+        name: "tags",
         remotes: {},
         shared: {
           react: {
