@@ -7,6 +7,8 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
+import { Button } from "@trmf/ui/components/button";
+import "@trmf/ui/globals.css";
 import "./app.css";
 
 const rootRoute = createRootRouteWithContext<{
@@ -21,6 +23,7 @@ const rootRoute = createRootRouteWithContext<{
         <Link className="host:[&.active]:font-bold" to="/tags">
           About
         </Link>
+        <Button>Host</Button>
       </div>
       <hr />
       <Outlet />

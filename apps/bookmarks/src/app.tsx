@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { Button } from "@trmf/ui/components/button";
+import "@trmf/ui/globals.css";
 import "./app.css";
 
 export const App = () => {
@@ -15,6 +17,7 @@ export const App = () => {
       <Link className="bookmarks:[&.active]:font-bold" to="/tags">
         About
       </Link>
+      <Button>Bookmarks</Button>
     </>
   );
 };
