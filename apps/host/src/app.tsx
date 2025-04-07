@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { Button } from "@trmf/ui/components/button";
 import "@trmf/ui/globals.css";
+import { SupabaseProvider } from "@trmf/util-supabase";
 import "./app.css";
 
 const rootRoute = createRootRouteWithContext<{
@@ -60,8 +61,10 @@ export const router = createRouter({
 
 export const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <SupabaseProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </SupabaseProvider>
   );
 };

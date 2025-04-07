@@ -1,13 +1,16 @@
 {
   "dependencies": {
-    "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.49.4"
+    "@supabase/supabase-js": "^2.49.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@trmf/typescript-config": "workspace:*"
+    "@trmf/typescript-config": "workspace:*",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1"
   },
   "exports": {
-    "./*": "./src/*.ts"
+    ".": "./src/index.tsx"
   },
   "name": "@trmf/util-supabase",
   "private": true,
