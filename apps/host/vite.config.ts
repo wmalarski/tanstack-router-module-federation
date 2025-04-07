@@ -1,6 +1,7 @@
 import { federation } from "@module-federation/vite";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import Sonda from "sonda/vite";
 import { defineConfig } from "vite";
 import { dependencies } from "./package.json";
 
@@ -39,5 +40,6 @@ export default defineConfig(() => ({
     }),
     react(),
     tailwindcss(),
+    Sonda({ enabled: true, open: false }),
   ],
 }));

@@ -14,7 +14,6 @@
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "@vitejs/plugin-react": "4.3.4",
-    "typescript": "5.8.3",
     "vite": "6.2.5"
   },
   "name": "@trmf/bookmarks",
@@ -22,7 +21,7 @@
     "build": "tsc && vite build",
     "check-types": "tsc --noEmit",
     "dev": "vite --port 4175",
-    "start": "npm run build && vite preview --port 4175"
+    "start": "vite preview --port 4175"
   },
   "type": "module",
   "version": "0.0.0"
