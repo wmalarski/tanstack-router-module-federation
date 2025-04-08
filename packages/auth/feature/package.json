@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "@tanstack/react-query": "^5.71.10",
-    "@trmf/data-access-auth": "workspace:*",
-    "@trmf/util-supabase": "workspace:*",
-    "@trmf/util-auth": "workspace:*",
+    "@trmf/auth-data-access": "workspace:*",
+    "@trmf/auth-util": "workspace:*",
+    "@trmf/supabase-util": "workspace:*",
     "react": "^19.1.0"
   },
   "devDependencies": {
@@ -13,7 +13,7 @@
   "exports": {
     ".": "./src/index.tsx"
   },
-  "name": "@trmf/feature-auth",
+  "name": "@trmf/auth-feature",
   "private": true,
   "scripts": {
     "check-types": "tsc --noEmit"

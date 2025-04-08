@@ -1,4 +1,4 @@
-import { getSupabaseClient } from "@trmf/util-supabase";
+import { getSupabaseClient } from "@trmf/supabase-util";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./app";

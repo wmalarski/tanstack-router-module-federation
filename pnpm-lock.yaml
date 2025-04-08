@@ -78,18 +78,18 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.115.0
         version: 1.115.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@trmf/feature-auth':
+      '@trmf/auth-feature':
         specifier: workspace:*
-        version: link:../../packages/auth/feature-auth
+        version: link:../../packages/auth/feature
+      '@trmf/auth-util':
+        specifier: workspace:*
+        version: link:../../packages/auth/util
+      '@trmf/supabase-util':
+        specifier: workspace:*
+        version: link:../../packages/supabase/util
       '@trmf/ui':
         specifier: workspace:*
         version: link:../../packages/shared/ui
-      '@trmf/util-auth':
-        specifier: workspace:*
-        version: link:../../packages/auth/util-auth
-      '@trmf/util-supabase':
-        specifier: workspace:*
-        version: link:../../packages/shared/util-supabase
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -162,7 +162,7 @@ importers:
         specifier: 6.2.5
         version: 6.2.5(@types/node@22.13.10)(jiti@2.4.2)(lightningcss@1.29.2)
 
-  packages/auth/data-access-auth:
+  packages/auth/data-access:
     dependencies:
       '@supabase/supabase-js':
         specifier: ^2.49.4
@@ -170,28 +170,28 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.71.10
         version: 5.71.10(react@19.1.0)
-      '@trmf/util-supabase':
+      '@trmf/supabase-util':
         specifier: workspace:*
-        version: link:../../shared/util-supabase
+        version: link:../../supabase/util
     devDependencies:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
 
-  packages/auth/feature-auth:
+  packages/auth/feature:
     dependencies:
       '@tanstack/react-query':
         specifier: ^5.71.10
         version: 5.71.10(react@19.1.0)
-      '@trmf/data-access-auth':
+      '@trmf/auth-data-access':
         specifier: workspace:*
-        version: link:../data-access-auth
-      '@trmf/util-auth':
+        version: link:../data-access
+      '@trmf/auth-util':
         specifier: workspace:*
-        version: link:../util-auth
-      '@trmf/util-supabase':
+        version: link:../util
+      '@trmf/supabase-util':
         specifier: workspace:*
-        version: link:../../shared/util-supabase
+        version: link:../../supabase/util
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -203,7 +203,7 @@ importers:
         specifier: 19.1.0
         version: 19.1.0
 
-  packages/auth/util-auth:
+  packages/auth/util:
     dependencies:
       '@supabase/supabase-js':
         specifier: ^2.49.4
@@ -264,7 +264,7 @@ importers:
         specifier: ^4.1.3
         version: 4.1.3
 
-  packages/shared/util-supabase:
+  packages/supabase/util:
     dependencies:
       '@supabase/supabase-js':
         specifier: ^2.49.4
@@ -275,7 +275,7 @@ importers:
     devDependencies:
       '@trmf/typescript-config':
         specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../../shared/typescript-config
       '@types/react':
         specifier: 19.1.0
         version: 19.1.0

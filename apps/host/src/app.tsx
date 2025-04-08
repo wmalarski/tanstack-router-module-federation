@@ -8,14 +8,14 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
-import { UserProvider } from "@trmf/feature-auth";
-import { Button } from "@trmf/ui/components/button";
-import "@trmf/ui/globals.css";
-import { useUserContext } from "@trmf/util-auth";
+import { UserProvider } from "@trmf/auth-feature";
+import { useUserContext } from "@trmf/auth-util";
 import {
   SupabaseProvider,
   type SupabaseTypedClient,
-} from "@trmf/util-supabase";
+} from "@trmf/supabase-util";
+import { Button } from "@trmf/ui/components/button";
+import "@trmf/ui/globals.css";
 import { Suspense } from "react";
 import "./app.css";
 

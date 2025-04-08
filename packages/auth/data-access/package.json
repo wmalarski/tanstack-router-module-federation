@@ -2,7 +2,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
     "@tanstack/react-query": "^5.71.10",
-    "@trmf/util-supabase": "workspace:*"
+    "@trmf/supabase-util": "workspace:*"
   },
   "devDependencies": {
     "@trmf/typescript-config": "workspace:*"
@@ -10,7 +10,7 @@
   "exports": {
     ".": "./src/index.tsx"
   },
-  "name": "@trmf/data-access-auth",
+  "name": "@trmf/auth-data-access",
   "private": true,
   "scripts": {
     "check-types": "tsc --noEmit"

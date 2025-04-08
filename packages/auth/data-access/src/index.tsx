@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import type { SupabaseTypedClient } from "@trmf/util-supabase";
+import type { SupabaseTypedClient } from "@trmf/supabase-util";
 
 type GetUserQueryOptionsArgs = {
   supabase: SupabaseTypedClient;

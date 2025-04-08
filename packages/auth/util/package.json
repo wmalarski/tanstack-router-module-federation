@@ -10,7 +10,7 @@
   "exports": {
     ".": "./src/index.tsx"
   },
-  "name": "@trmf/util-auth",
+  "name": "@trmf/auth-util",
   "private": true,
   "scripts": {
     "check-types": "tsc --noEmit"
