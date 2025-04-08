@@ -32,6 +32,9 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.115.0
         version: 1.115.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trmf/app-context-util':
+        specifier: workspace:*
+        version: link:../../packages/shared/app-context-util
       '@trmf/auth-util':
         specifier: workspace:*
         version: link:../../packages/auth/util
@@ -136,6 +139,9 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.115.0
         version: 1.115.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trmf/app-context-util':
+        specifier: workspace:*
+        version: link:../../packages/shared/app-context-util
       '@trmf/auth-util':
         specifier: workspace:*
         version: link:../../packages/auth/util
@@ -227,6 +233,34 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@types/react':
+        specifier: 19.1.0
+        version: 19.1.0
+
+  packages/shared/app-context-util:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.71.10
+        version: 5.71.10(react@19.1.0)
+      '@tanstack/react-router':
+        specifier: ^1.115.0
+        version: 1.115.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trmf/auth-data-access':
+        specifier: workspace:*
+        version: link:../../auth/data-access
+      '@trmf/auth-util':
+        specifier: workspace:*
+        version: link:../../auth/util
+      '@trmf/supabase-util':
+        specifier: workspace:*
+        version: link:../../supabase/util
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+    devDependencies:
+      '@trmf/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/react':
         specifier: 19.1.0
         version: 19.1.0

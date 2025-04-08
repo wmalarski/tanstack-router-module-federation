@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@tanstack/react-query": "^5.71.10",
+    "@tanstack/react-router": "^1.115.0",
+    "@trmf/auth-data-access": "workspace:*",
+    "@trmf/auth-util": "workspace:*",
+    "@trmf/supabase-util": "workspace:*",
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@trmf/typescript-config": "workspace:*",
+    "@types/react": "19.1.0"
+  },
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "name": "@trmf/app-context-util",
+  "private": true,
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "version": "0.0.0"
+}
