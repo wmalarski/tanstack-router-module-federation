@@ -2,12 +2,12 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
     "@tailwindcss/vite": "^4.1.3",
-    "@tanstack/react-query": "^5.71.10",
-    "@tanstack/react-router": "^1.115.0",
-    "@trmf/ui": "workspace:*",
-    "@trmf/auth-util": "workspace:*",
+    "@tanstack/react-query": "^5.72.1",
+    "@tanstack/react-router": "^1.115.2",
     "@trmf/auth-feature": "workspace:*",
+    "@trmf/auth-util": "workspace:*",
     "@trmf/supabase-util": "workspace:*",
+    "@trmf/ui": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.3"

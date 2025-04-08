@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@tanstack/react-query": "^5.71.10",
+    "@tanstack/react-query": "^5.72.1",
     "@trmf/auth-data-access": "workspace:*",
     "@trmf/auth-util": "workspace:*",
     "@trmf/supabase-util": "workspace:*",

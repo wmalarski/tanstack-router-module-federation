@@ -11,7 +11,7 @@
     }
   },
   "files": {
-    "includes": ["**", "!**/app.css", "!**/util-supabase/src/types.ts"]
+    "includes": ["**", "!**/app.css", "!**/supabase/util/src/types.ts"]
   },
   "formatter": {
     "enabled": true,

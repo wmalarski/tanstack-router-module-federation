@@ -7,7 +7,7 @@ type GetUserQueryOptionsArgs = {
 
 export const getUserQueryOptions = ({ supabase }: GetUserQueryOptionsArgs) => {
   return queryOptions({
-    queryKey: ["data-access-auth", "get-user"],
     queryFn: () => supabase.auth.getUser(),
+    queryKey: ["data-access-auth", "get-user"],
   });
 };
