@@ -1,3 +1,4 @@
+import type { UserResponse } from "@supabase/supabase-js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   createRootRouteWithContext,
@@ -7,13 +8,20 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
+import { UserProvider } from "@trmf/feature-auth";
 import { Button } from "@trmf/ui/components/button";
 import "@trmf/ui/globals.css";
-import { SupabaseProvider } from "@trmf/util-supabase";
+import { useUserContext } from "@trmf/util-auth";
+import {
+  SupabaseProvider,
+  type SupabaseTypedClient,
+} from "@trmf/util-supabase";
+import { Suspense } from "react";
 import "./app.css";
 
 const rootRoute = createRootRouteWithContext<{
   queryClient: QueryClient;
+  user: UserResponse;
 }>()({
   component: () => (
     <>
@@ -53,18 +61,34 @@ const queryClient = new QueryClient();
 export const router = createRouter({
   context: {
     queryClient,
+    // biome-ignore lint/style/noNonNullAssertion: <explanation>
+    user: null!,
   },
   defaultPreload: "intent",
   routeTree,
   scrollRestoration: true,
 });
 
-export const App = () => {
+type AppProps = {
+  supabase: SupabaseTypedClient;
+};
+
+export const App = ({ supabase }: AppProps) => {
   return (
-    <SupabaseProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </SupabaseProvider>
+    <QueryClientProvider client={queryClient}>
+      <SupabaseProvider supabase={supabase}>
+        <Suspense fallback={"Loading user"}>
+          <UserProvider>
+            <Router />
+          </UserProvider>
+        </Suspense>
+      </SupabaseProvider>
+    </QueryClientProvider>
   );
+};
+
+const Router = () => {
+  const user = useUserContext();
+
+  return <RouterProvider context={{ user }} router={router} />;
 };
