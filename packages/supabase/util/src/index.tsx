@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { createContext, type PropsWithChildren, useContext } from "react";
+import { createContext, type PropsWithChildren, use, useContext } from "react";
 import type { Database } from "./types";
 
 export const getSupabaseClient = () => {
@@ -13,7 +13,7 @@ export type SupabaseTypedClient = SupabaseClient<Database>;
 
 type SupabaseContextValue = SupabaseTypedClient | null;
 
-const SupabaseContext = createContext<SupabaseContextValue>(null);
+export const SupabaseContext = createContext<SupabaseContextValue>(null);
 
 type SupabaseProviderProps = PropsWithChildren<{
   supabase: SupabaseTypedClient;
@@ -28,6 +28,16 @@ export const SupabaseProvider = ({
 
 export const useSupabaseContext = () => {
   const supabase = useContext(SupabaseContext);
+
+  if (!supabase) {
+    throw new Error("SupabaseContext not defined!");
+  }
+
+  return supabase;
+};
+
+export const getSupabaseContext = () => {
+  const supabase = use(SupabaseContext);
 
   if (!supabase) {
     throw new Error("SupabaseContext not defined!");

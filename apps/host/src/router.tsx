@@ -10,8 +10,8 @@ import {
 } from "@tanstack/react-router";
 import { useUserContext } from "@trmf/auth-util";
 import {
+  getSupabaseContext,
   type SupabaseTypedClient,
-  useSupabaseContext,
 } from "@trmf/supabase-util";
 import { Button } from "@trmf/ui/components/button";
 import "@trmf/ui/globals.css";
@@ -73,7 +73,7 @@ export type RouterType = ReturnType<typeof getRouter>;
 
 export const Router = () => {
   const user = useUserContext();
-  const supabase = useSupabaseContext();
+  const supabase = getSupabaseContext();
 
   const [router] = useState(() => getRouter({ queryClient, supabase, user }));
 

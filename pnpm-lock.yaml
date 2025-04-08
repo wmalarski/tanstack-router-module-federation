@@ -191,10 +191,16 @@ importers:
       '@trmf/supabase-util':
         specifier: workspace:*
         version: link:../../supabase/util
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
     devDependencies:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@types/react':
+        specifier: 19.1.0
+        version: 19.1.0
 
   packages/auth/feature:
     dependencies:

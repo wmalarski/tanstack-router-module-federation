@@ -1,13 +1,23 @@
+import type { SignInWithPasswordCredentials } from "@supabase/supabase-js";
 import { queryOptions } from "@tanstack/react-query";
-import type { SupabaseTypedClient } from "@trmf/supabase-util";
+import { getSupabaseContext } from "@trmf/supabase-util";
 
-type GetUserQueryOptionsArgs = {
-  supabase: SupabaseTypedClient;
-};
-
-export const getUserQueryOptions = ({ supabase }: GetUserQueryOptionsArgs) => {
+export const getUserQueryOptions = () => {
   return queryOptions({
-    queryFn: () => supabase.auth.getUser(),
+    queryFn: () => getSupabaseContext().auth.getUser(),
     queryKey: ["data-access-auth", "get-user"],
   });
+};
+
+export const signInWithPasswordMutationOptions = () => {
+  return {
+    mutationFn: (args: SignInWithPasswordCredentials) =>
+      getSupabaseContext().auth.signInWithPassword(args),
+  };
+};
+
+export const signOutMutationOptions = () => {
+  return {
+    mutationFn: () => getSupabaseContext().auth.signOut(),
+  };
 };
