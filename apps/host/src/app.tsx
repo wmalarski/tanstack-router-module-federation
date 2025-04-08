@@ -13,16 +13,20 @@ import { useUserContext } from "@trmf/auth-util";
 import {
   SupabaseProvider,
   type SupabaseTypedClient,
+  useSupabaseContext,
 } from "@trmf/supabase-util";
 import { Button } from "@trmf/ui/components/button";
 import "@trmf/ui/globals.css";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import "./app.css";
 
-const rootRoute = createRootRouteWithContext<{
+type RootRouteContext = {
   queryClient: QueryClient;
   user: UserResponse;
-}>()({
+  supabase: SupabaseTypedClient;
+};
+
+const rootRoute = createRootRouteWithContext<RootRouteContext>()({
   component: () => (
     <>
       <div className="host:flex host:gap-2 host:p-2">
@@ -58,16 +62,16 @@ const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
 
 const queryClient = new QueryClient();
 
-export const router = createRouter({
-  context: {
-    queryClient,
-    // biome-ignore lint/style/noNonNullAssertion: <explanation>
-    user: null!,
-  },
-  defaultPreload: "intent",
-  routeTree,
-  scrollRestoration: true,
-});
+const getRouter = (context: RootRouteContext) => {
+  return createRouter({
+    context,
+    defaultPreload: "intent",
+    routeTree,
+    scrollRestoration: true,
+  });
+};
+
+export type Router = ReturnType<typeof getRouter>;
 
 type AppProps = {
   supabase: SupabaseTypedClient;
@@ -89,6 +93,9 @@ export const App = ({ supabase }: AppProps) => {
 
 const Router = () => {
   const user = useUserContext();
+  const supabase = useSupabaseContext();
+
+  const [router] = useState(() => getRouter({ queryClient, supabase, user }));
 
   return <RouterProvider context={{ user }} router={router} />;
 };

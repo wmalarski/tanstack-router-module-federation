@@ -32,6 +32,12 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.115.0
         version: 1.115.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trmf/auth-util':
+        specifier: workspace:*
+        version: link:../../packages/auth/util
+      '@trmf/supabase-util':
+        specifier: workspace:*
+        version: link:../../packages/supabase/util
       '@trmf/ui':
         specifier: workspace:*
         version: link:../../packages/shared/ui
@@ -130,6 +136,12 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.115.0
         version: 1.115.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trmf/auth-util':
+        specifier: workspace:*
+        version: link:../../packages/auth/util
+      '@trmf/supabase-util':
+        specifier: workspace:*
+        version: link:../../packages/supabase/util
       '@trmf/ui':
         specifier: workspace:*
         version: link:../../packages/shared/ui

@@ -9,5 +9,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   const userQuery = useSuspenseQuery(getUserQueryOptions({ supabase }));
 
+  console.log("UserContext");
+
   return <UserContext value={userQuery.data}>{children}</UserContext>;
 };

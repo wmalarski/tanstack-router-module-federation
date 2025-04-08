@@ -4,10 +4,8 @@ import type { Database } from "./types";
 
 export const getSupabaseClient = () => {
   return createClient<Database>(
-    // biome-ignore lint/style/noNonNullAssertion: <explanation>
-    process.env.VITE_SUPABASE_URL!,
-    // biome-ignore lint/style/noNonNullAssertion: <explanation>
-    process.env.VITE_SUPABASE_ANON_KEY!,
+    import.meta.env.VITE_SUPABASE_URL,
+    import.meta.env.VITE_SUPABASE_ANON_KEY,
   );
 };
 
