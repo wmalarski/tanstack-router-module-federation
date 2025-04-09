@@ -1,4 +1,3 @@
-import type { UserResponse } from "@supabase/supabase-js";
 import { QueryClient } from "@tanstack/react-query";
 import {
   createRootRouteWithContext,
@@ -8,7 +7,7 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
-import { useUserContext } from "@trmf/auth-util";
+import { type UserContextValue, useUserContext } from "@trmf/auth-util";
 import {
   getSupabaseContext,
   type SupabaseTypedClient,
@@ -20,7 +19,7 @@ import "./app.css";
 
 type RootRouteContext = {
   queryClient: QueryClient;
-  user: UserResponse;
+  user: UserContextValue;
   supabase: SupabaseTypedClient;
 };
 
@@ -77,5 +76,5 @@ export const Router = () => {
 
   const [router] = useState(() => getRouter({ queryClient, supabase, user }));
 
-  return <RouterProvider context={{ user }} router={router} />;
+  return <RouterProvider router={router} />;
 };

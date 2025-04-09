@@ -1,9 +1,11 @@
-import type { UserResponse } from "@supabase/supabase-js";
+import type { User } from "@supabase/supabase-js";
 import { createContext, use, useContext } from "react";
 
-type UserContextValue = UserResponse | null;
+export type UserContextValue = {
+  user: User | null;
+};
 
-export const UserContext = createContext<UserContextValue>(null);
+export const UserContext = createContext<UserContextValue>({ user: null });
 
 export const useUserContext = () => {
   const user = useContext(UserContext);
