@@ -1,7 +1,7 @@
 import { createFormHook, createFormHookContexts } from "@tanstack/react-form";
-import { Button } from "./button";
-import { Checkbox } from "./checkbox";
-import { Input } from "./input";
+import { Button } from "../components/button";
+import { Checkbox } from "../components/checkbox";
+import { Input } from "../components/input";
 
 const { fieldContext, formContext } = createFormHookContexts();
 

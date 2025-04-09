@@ -5,7 +5,9 @@
     "@trmf/auth-data-access": "workspace:*",
     "@trmf/auth-util": "workspace:*",
     "@trmf/supabase-util": "workspace:*",
-    "react": "^19.1.0"
+    "@trmf/ui": "workspace:*",
+    "react": "^19.1.0",
+    "valibot": "^1.0.0"
   },
   "devDependencies": {
     "@trmf/typescript-config": "workspace:*",
