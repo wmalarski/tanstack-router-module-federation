@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { UserProvider } from "@trmf/auth-feature";
+import { UserProvider } from "@trmf/auth-feature/user-provider";
 import {
   SupabaseProvider,
   type SupabaseTypedClient,
