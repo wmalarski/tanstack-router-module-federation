@@ -15,6 +15,9 @@ import {
 import "@trmf/ui/globals.css";
 import { useState } from "react";
 import "./app.css";
+import { SignInRoute } from "./routes/sign-in-route";
+import { SignUpRoute } from "./routes/sign-up-route";
+import { SignUpSuccessRoute } from "./routes/sign-up-success-route";
 
 type RootRouteContext = {
   queryClient: QueryClient;
@@ -45,7 +48,31 @@ const tagsRoute = createRoute({
   // @ts-ignore
 }).lazy(() => import("tags/tags-router").then((module) => module.Route));
 
-const routeTree = rootRoute.addChildren([indexRoute, tagsRoute]);
+const signUpRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/sign-up",
+  component: SignUpRoute,
+});
+
+const signUpSuccessRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/sign-up/success",
+  component: SignUpSuccessRoute,
+});
+
+const signInRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/sign-in",
+  component: SignInRoute,
+});
+
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  tagsRoute,
+  signUpRoute,
+  signUpSuccessRoute,
+  signInRoute,
+]);
 
 const queryClient = new QueryClient();
 
