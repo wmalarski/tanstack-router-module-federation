@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@tanstack/react-router": "^1.115.2",
+    "@trmf/auth-util": "workspace:*",
+    "@trmf/auth-feature": "workspace:*",
+    "@trmf/ui": "workspace:*",
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@trmf/typescript-config": "workspace:*",
+    "@types/react": "19.1.0"
+  },
+  "exports": {
+    "./*": "./src/*.tsx"
+  },
+  "name": "@trmf/shared-layout-feature",
+  "private": true,
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "version": "0.0.0"
+}

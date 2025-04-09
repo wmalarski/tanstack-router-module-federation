@@ -93,6 +93,9 @@ importers:
       '@trmf/auth-util':
         specifier: workspace:*
         version: link:../../packages/auth/util
+      '@trmf/shared-layout-feature':
+        specifier: workspace:*
+        version: link:../../packages/shared/layout-feature
       '@trmf/supabase-util':
         specifier: workspace:*
         version: link:../../packages/supabase/util
@@ -269,6 +272,31 @@ importers:
       '@trmf/supabase-util':
         specifier: workspace:*
         version: link:../../supabase/util
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+    devDependencies:
+      '@trmf/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: 19.1.0
+        version: 19.1.0
+
+  packages/shared/layout-feature:
+    dependencies:
+      '@tanstack/react-router':
+        specifier: ^1.115.2
+        version: 1.115.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trmf/auth-feature':
+        specifier: workspace:*
+        version: link:../../auth/feature
+      '@trmf/auth-util':
+        specifier: workspace:*
+        version: link:../../auth/util
+      '@trmf/ui':
+        specifier: workspace:*
+        version: link:../ui
       react:
         specifier: ^19.1.0
         version: 19.1.0

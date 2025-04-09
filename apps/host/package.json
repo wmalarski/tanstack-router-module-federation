@@ -7,6 +7,7 @@
     "@trmf/auth-feature": "workspace:*",
     "@trmf/auth-util": "workspace:*",
     "@trmf/supabase-util": "workspace:*",
+    "@trmf/shared-layout-feature": "workspace:*",
     "@trmf/ui": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

@@ -3,16 +3,15 @@ import {
   createRootRouteWithContext,
   createRoute,
   createRouter,
-  Link,
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
 import { type UserContextValue, useUserContext } from "@trmf/auth-util";
+import { TopNavbar } from "@trmf/shared-layout-feature/top-navbar";
 import {
   getSupabaseContext,
   type SupabaseTypedClient,
 } from "@trmf/supabase-util";
-import { Button } from "@trmf/ui/components/button";
 import "@trmf/ui/globals.css";
 import { useState } from "react";
 import "./app.css";
@@ -26,16 +25,7 @@ type RootRouteContext = {
 const rootRoute = createRootRouteWithContext<RootRouteContext>()({
   component: () => (
     <>
-      <div className="host:flex host:gap-2 host:p-2">
-        <Link className="host:[&.active]:font-bold" to="/">
-          Home
-        </Link>{" "}
-        <Link className="host:[&.active]:font-bold" to="/tags">
-          About
-        </Link>
-        <Button>Host</Button>
-      </div>
-      <hr />
+      <TopNavbar />
       <Outlet />
     </>
   ),
@@ -49,13 +39,13 @@ const indexRoute = createRoute({
   import("bookmarks/bookmarks-router").then((module) => module.Route),
 );
 
-const aboutRoute = createRoute({
+const tagsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/tags",
   // @ts-ignore
 }).lazy(() => import("tags/tags-router").then((module) => module.Route));
 
-const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
+const routeTree = rootRoute.addChildren([indexRoute, tagsRoute]);
 
 const queryClient = new QueryClient();
 
