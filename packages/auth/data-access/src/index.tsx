@@ -1,4 +1,7 @@
-import type { SignInWithPasswordCredentials } from "@supabase/supabase-js";
+import type {
+  SignInWithPasswordCredentials,
+  SignUpWithPasswordCredentials,
+} from "@supabase/supabase-js";
 import { type QueryClient, queryOptions } from "@tanstack/react-query";
 import { getSupabaseContext } from "@trmf/supabase-util";
 import { useEffect } from "react";
@@ -17,6 +20,13 @@ export const signInWithPasswordMutationOptions = () => {
   return {
     mutationFn: (args: SignInWithPasswordCredentials) =>
       getSupabaseContext().auth.signInWithPassword(args),
+  };
+};
+
+export const signUpMutationOptions = () => {
+  return {
+    mutationFn: (args: SignUpWithPasswordCredentials) =>
+      getSupabaseContext().auth.signUp(args),
   };
 };
 
