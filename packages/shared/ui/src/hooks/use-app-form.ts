@@ -7,12 +7,12 @@ const { fieldContext, formContext } = createFormHookContexts();
 
 export const { useAppForm } = createFormHook({
   fieldComponents: {
-    Input,
     Checkbox,
+    Input,
   },
+  fieldContext,
   formComponents: {
     Button,
   },
-  fieldContext,
   formContext,
 });

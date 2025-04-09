@@ -18,8 +18,8 @@ type UseAuthFieldsArgs = {
 export const useAuthFields = ({ onSubmit }: UseAuthFieldsArgs) => {
   return useAppForm({
     defaultValues: { email: "", password: "" },
-    validators: { onChange: getAuthFieldsValidator() },
     onSubmit: ({ value }) => onSubmit(value),
+    validators: { onChange: getAuthFieldsValidator() },
   });
 };
 

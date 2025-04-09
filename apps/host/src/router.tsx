@@ -49,21 +49,21 @@ const tagsRoute = createRoute({
 }).lazy(() => import("tags/tags-router").then((module) => module.Route));
 
 const signUpRoute = createRoute({
+  component: SignUpRoute,
   getParentRoute: () => rootRoute,
   path: "/sign-up",
-  component: SignUpRoute,
 });
 
 const signUpSuccessRoute = createRoute({
+  component: SignUpSuccessRoute,
   getParentRoute: () => rootRoute,
   path: "/sign-up/success",
-  component: SignUpSuccessRoute,
 });
 
 const signInRoute = createRoute({
+  component: SignInRoute,
   getParentRoute: () => rootRoute,
   path: "/sign-in",
-  component: SignInRoute,
 });
 
 const routeTree = rootRoute.addChildren([

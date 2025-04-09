@@ -1,8 +1,8 @@
 {
   "dependencies": {
     "@tanstack/react-router": "^1.115.2",
-    "@trmf/auth-util": "workspace:*",
     "@trmf/auth-feature": "workspace:*",
+    "@trmf/auth-util": "workspace:*",
     "@trmf/ui": "workspace:*",
     "react": "^19.1.0"
   },
