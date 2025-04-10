@@ -8,20 +8,40 @@ export type UserContextValue = {
 export const UserContext = createContext<UserContextValue>({ user: null });
 
 export const useUserContext = () => {
-  const user = useContext(UserContext);
+  const context = useContext(UserContext);
+
+  if (!context) {
+    throw new Error("User is not defined!");
+  }
+
+  return context.user;
+};
+
+export const getUserContext = () => {
+  const context = use(UserContext);
+
+  if (!context) {
+    throw new Error("User is not defined!");
+  }
+
+  return context.user;
+};
+
+export const useRequiredUserContext = () => {
+  const user = useUserContext();
 
   if (!user) {
-    throw new Error("UserContext not defined!");
+    throw new Error("User is not defined!");
   }
 
   return user;
 };
 
-export const getUserContext = () => {
-  const user = use(UserContext);
+export const getRequiredUserContext = () => {
+  const user = getUserContext();
 
   if (!user) {
-    throw new Error("UserContext not defined!");
+    throw new Error("User is not defined!");
   }
 
   return user;

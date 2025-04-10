@@ -7,7 +7,7 @@ type AuthGuardArgs = {
 };
 
 export const authGuard = ({ context, location }: AuthGuardArgs) => {
-  if (!context.user.user) {
+  if (!context.user) {
     throw redirect({
       to: "/sign-in",
       search: { redirect: location.href },
@@ -20,7 +20,7 @@ type GuestGuardArgs = {
 };
 
 export const guestGuard = ({ context }: GuestGuardArgs) => {
-  if (context.user.user) {
+  if (context.user) {
     throw redirect({ to: "/" });
   }
 };
