@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { signInWithPasswordMutationOptions } from "@trmf/auth-data-access";
 import {
   Card,
@@ -12,7 +12,15 @@ import type { ComponentProps } from "react";
 import { AuthFields, useAuthFields } from "./auth-fields";
 
 export const SignInForm = () => {
-  const signInMutation = useMutation(signInWithPasswordMutationOptions());
+  const navigate = useNavigate();
+
+  const signInMutation = useMutation(
+    signInWithPasswordMutationOptions({
+      onSuccess: async () => {
+        await navigate({ to: "/" });
+      },
+    }),
+  );
 
   const form = useAuthFields({
     onSubmit: (value) => {
@@ -20,10 +28,9 @@ export const SignInForm = () => {
     },
   });
 
-  const onSubmit: ComponentProps<"form">["onSubmit"] = (event) => {
+  const onSubmit: ComponentProps<"form">["onSubmit"] = async (event) => {
     event.preventDefault();
-    console.log("onSubmit");
-    form.handleSubmit();
+    await form.handleSubmit();
   };
 
   return (

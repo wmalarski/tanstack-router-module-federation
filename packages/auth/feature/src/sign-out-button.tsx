@@ -1,10 +1,20 @@
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
 import { signOutMutationOptions } from "@trmf/auth-data-access";
 import { Button } from "@trmf/ui/components/button";
 import type { ComponentProps } from "react";
 
 export const SignOutButton = () => {
-  const signOutMutation = useMutation(signOutMutationOptions());
+  const navigate = useNavigate();
+
+  const signOutMutation = useMutation(
+    signOutMutationOptions({
+      onSuccess: async () => {
+        console.log("signOutMutation-onSuccess");
+        await navigate({ to: "/sign-in" });
+      },
+    }),
+  );
 
   const onSubmit: ComponentProps<"form">["onSubmit"] = (event) => {
     event.preventDefault();

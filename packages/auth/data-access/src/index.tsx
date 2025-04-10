@@ -1,10 +1,21 @@
 import type {
+  AuthResponse,
+  AuthTokenResponsePassword,
   SignInWithPasswordCredentials,
   SignUpWithPasswordCredentials,
 } from "@supabase/supabase-js";
-import { type QueryClient, queryOptions } from "@tanstack/react-query";
-import { getSupabaseContext, useSupabaseContext } from "@trmf/supabase-util";
-import { useEffect } from "react";
+import {
+  type MutationOptions,
+  type QueryClient,
+  QueryClientContext,
+  queryOptions,
+} from "@tanstack/react-query";
+import {
+  getSupabaseContext,
+  type SupabaseTypedClient,
+  useSupabaseContext,
+} from "@trmf/supabase-util";
+import { use, useEffect } from "react";
 
 export const getUserQueryOptions = () => {
   return queryOptions({
@@ -16,23 +27,63 @@ export const getUserQueryOptions = () => {
   });
 };
 
-export const signInWithPasswordMutationOptions = () => {
+type SignInWithPasswordMutationOptionsArgs = {
+  onSuccess: (data: AuthTokenResponsePassword) => void;
+};
+
+export const signInWithPasswordMutationOptions = ({
+  onSuccess,
+}: SignInWithPasswordMutationOptionsArgs): MutationOptions<
+  AuthTokenResponsePassword,
+  Error,
+  SignInWithPasswordCredentials
+> => {
+  const queryClient = use(QueryClientContext);
+  const supabase = getSupabaseContext();
+
   return {
-    mutationFn: (args: SignInWithPasswordCredentials) =>
-      getSupabaseContext().auth.signInWithPassword(args),
+    mutationFn: (args) => supabase.auth.signInWithPassword(args),
+    onSuccess: (data) => {
+      queryClient?.setQueryData(getUserQueryOptions().queryKey, data.data.user);
+      onSuccess(data);
+    },
   };
 };
 
-export const signUpMutationOptions = () => {
+export const signUpMutationOptions = (): MutationOptions<
+  AuthResponse,
+  Error,
+  SignUpWithPasswordCredentials
+> => {
+  const supabase = getSupabaseContext();
   return {
-    mutationFn: (args: SignUpWithPasswordCredentials) =>
-      getSupabaseContext().auth.signUp(args),
+    mutationFn: (args) => supabase.auth.signUp(args),
   };
 };
 
-export const signOutMutationOptions = () => {
+type SignOutResponse = Awaited<
+  ReturnType<SupabaseTypedClient["auth"]["signOut"]>
+>;
+
+type SignOutMutationOptionsArgs = {
+  onSuccess: (data: SignOutResponse) => void;
+};
+
+export const signOutMutationOptions = ({
+  onSuccess,
+}: SignOutMutationOptionsArgs): MutationOptions<SignOutResponse, Error> => {
+  const supabase = getSupabaseContext();
+  const queryClient = use(QueryClientContext);
+
   return {
-    mutationFn: () => getSupabaseContext().auth.signOut(),
+    mutationFn: () => supabase.auth.signOut(),
+    onSuccess: (data) => {
+      queryClient?.removeQueries({
+        queryKey: getUserQueryOptions().queryKey,
+        exact: true,
+      });
+      onSuccess(data);
+    },
   };
 };
 

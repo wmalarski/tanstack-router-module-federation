@@ -18,7 +18,7 @@ type UseAuthFieldsArgs = {
 export const useAuthFields = ({ onSubmit }: UseAuthFieldsArgs) => {
   return useAppForm({
     defaultValues: { email: "", password: "" },
-    onSubmit: ({ value }) => onSubmit(value),
+    onSubmit: (event) => onSubmit(event.value),
     validators: { onChange: getAuthFieldsValidator() },
   });
 };
@@ -37,8 +37,11 @@ export const AuthFields = ({ form }: AuthFieldsProps) => {
             <field.Input
               id="email"
               placeholder="m@example.com"
+              name={field.name}
               required
               type="email"
+              value={field.state.value}
+              onChange={(event) => field.handleChange(event.target.value)}
             />
           )}
         </form.AppField>
@@ -46,7 +49,16 @@ export const AuthFields = ({ form }: AuthFieldsProps) => {
       <div className="grid gap-2">
         <Label htmlFor="password">Password</Label>
         <form.AppField name="password">
-          {(field) => <field.Input id="password" required type="password" />}
+          {(field) => (
+            <field.Input
+              name="password"
+              id="password"
+              required
+              type="password"
+              value={field.state.value}
+              onChange={(event) => field.handleChange(event.target.value)}
+            />
+          )}
         </form.AppField>
       </div>
     </div>
