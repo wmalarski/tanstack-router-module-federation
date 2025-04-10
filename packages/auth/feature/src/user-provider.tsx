@@ -1,4 +1,4 @@
-import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
   getUserQueryOptions,
   useOnAuthStateChangeListener,
@@ -7,12 +7,12 @@ import { UserContext } from "@trmf/auth-util";
 import { type PropsWithChildren, useMemo } from "react";
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
-  const queryClient = useQueryClient();
-
   const userQuery = useSuspenseQuery(getUserQueryOptions());
-  useOnAuthStateChangeListener(queryClient);
+  useOnAuthStateChangeListener();
 
   const value = useMemo(() => ({ user: userQuery.data }), [userQuery.data]);
+
+  console.log("UserProvider", value);
 
   return <UserContext value={value}>{children}</UserContext>;
 };

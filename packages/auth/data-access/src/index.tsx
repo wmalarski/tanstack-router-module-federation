@@ -6,7 +6,6 @@ import type {
 } from "@supabase/supabase-js";
 import {
   type MutationOptions,
-  type QueryClient,
   QueryClientContext,
   queryOptions,
 } from "@tanstack/react-query";
@@ -87,17 +86,19 @@ export const signOutMutationOptions = ({
   };
 };
 
-export const useOnAuthStateChangeListener = (queryClient: QueryClient) => {
+export const useOnAuthStateChangeListener = () => {
   const supabase = useSupabaseContext();
+  const queryClient = use(QueryClientContext);
 
   useEffect(() => {
     const result = supabase.auth.onAuthStateChange((_event, session) => {
       const options = getUserQueryOptions();
-      queryClient.setQueryData(options.queryKey, session?.user);
+      console.log("onAuthStateChange", options.queryKey, session?.user);
+      queryClient?.setQueryData(options.queryKey, session?.user);
     });
 
     return () => {
       result.data.subscription.unsubscribe();
     };
-  }, [queryClient.setQueryData, supabase.auth.onAuthStateChange]);
+  }, [queryClient?.setQueryData, supabase.auth.onAuthStateChange]);
 };

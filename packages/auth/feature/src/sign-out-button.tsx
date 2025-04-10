@@ -5,7 +5,7 @@ import { Button } from "@trmf/ui/components/button";
 import type { ComponentProps } from "react";
 
 export const SignOutButton = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate({ from: "/" });
 
   const signOutMutation = useMutation(
     signOutMutationOptions({
