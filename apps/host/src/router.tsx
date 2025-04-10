@@ -4,29 +4,20 @@ import {
   createRoute,
   createRouter,
   Outlet,
-  type ParsedLocation,
-  redirect,
   RouterProvider,
 } from "@tanstack/react-router";
-import { type UserContextValue, useUserContext } from "@trmf/auth-util";
+import { useUserContext } from "@trmf/auth-util";
 import { TopNavbar } from "@trmf/shared-layout-feature/top-navbar";
-import {
-  getSupabaseContext,
-  type SupabaseTypedClient,
-} from "@trmf/supabase-util";
+import { getSupabaseContext } from "@trmf/supabase-util";
 import "@trmf/ui/globals.css";
 import { useState } from "react";
 import * as v from "valibot";
 import "./app.css";
+import type { RootRouteContext } from "./router-context";
+import { authGuard, guestGuard } from "./router-guards";
 import { SignInRoute } from "./routes/sign-in-route";
 import { SignUpRoute } from "./routes/sign-up-route";
 import { SignUpSuccessRoute } from "./routes/sign-up-success-route";
-
-type RootRouteContext = {
-  queryClient: QueryClient;
-  user: UserContextValue;
-  supabase: SupabaseTypedClient;
-};
 
 const rootRoute = createRootRouteWithContext<RootRouteContext>()({
   component: () => (
@@ -36,30 +27,6 @@ const rootRoute = createRootRouteWithContext<RootRouteContext>()({
     </>
   ),
 });
-
-type AuthGuardArgs = {
-  context: RootRouteContext;
-  location: ParsedLocation;
-};
-
-const authGuard = ({ context, location }: AuthGuardArgs) => {
-  if (!context.user.user) {
-    throw redirect({
-      to: "/sign-in",
-      search: { redirect: location.href },
-    });
-  }
-};
-
-type GuestGuardArgs = {
-  context: RootRouteContext;
-};
-
-const guestGuard = ({ context }: GuestGuardArgs) => {
-  if (context.user.user) {
-    throw redirect({ to: "/" });
-  }
-};
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
