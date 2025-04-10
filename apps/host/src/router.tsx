@@ -22,9 +22,9 @@ import { SignUpSuccessRoute } from "./routes/sign-up-success-route";
 const rootRoute = createRootRouteWithContext<RootRouteContext>()({});
 
 const protectedLayout = createRoute({
-  getParentRoute: () => rootRoute,
-  component: ProtectedLayout,
   beforeLoad: authGuard,
+  component: ProtectedLayout,
+  getParentRoute: () => rootRoute,
   id: "protected",
 });
 
@@ -43,9 +43,9 @@ const tagsRoute = createRoute({
 }).lazy(() => import("tags/tags-router").then((module) => module.Route));
 
 const formLayout = createRoute({
-  getParentRoute: () => rootRoute,
-  component: FormLayout,
   beforeLoad: guestGuard,
+  component: FormLayout,
+  getParentRoute: () => rootRoute,
   id: "form",
 });
 

@@ -3,7 +3,7 @@ import type {
   SignUpWithPasswordCredentials,
 } from "@supabase/supabase-js";
 import { type QueryClient, queryOptions } from "@tanstack/react-query";
-import { getSupabaseContext } from "@trmf/supabase-util";
+import { getSupabaseContext, useSupabaseContext } from "@trmf/supabase-util";
 import { useEffect } from "react";
 
 export const getUserQueryOptions = () => {
@@ -37,16 +37,16 @@ export const signOutMutationOptions = () => {
 };
 
 export const useOnAuthStateChangeListener = (queryClient: QueryClient) => {
+  const supabase = useSupabaseContext();
+
   useEffect(() => {
-    const result = getSupabaseContext().auth.onAuthStateChange(
-      (_event, session) => {
-        const options = getUserQueryOptions();
-        queryClient.setQueryData(options.queryKey, session?.user);
-      },
-    );
+    const result = supabase.auth.onAuthStateChange((_event, session) => {
+      const options = getUserQueryOptions();
+      queryClient.setQueryData(options.queryKey, session?.user);
+    });
 
     return () => {
       result.data.subscription.unsubscribe();
     };
-  }, [queryClient.setQueryData]);
+  }, [queryClient.setQueryData, supabase.auth.onAuthStateChange]);
 };
