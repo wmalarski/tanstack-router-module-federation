@@ -4,5 +4,9 @@
   },
   "exclude": ["node_modules", "dist"],
   "extends": "@trmf/typescript-config/react-library.json",
-  "include": ["src", "../../supabase/util/src/vite-env.d.ts"]
+  "include": [
+    "src",
+    "../../supabase/util/src/vite-env.d.ts",
+    "../../../apps/host/src/globals.d.ts"
+  ]
 }

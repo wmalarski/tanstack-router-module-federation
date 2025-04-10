@@ -1,12 +1,9 @@
 import { Outlet } from "@tanstack/react-router";
-import { TopNavbar } from "@trmf/shared-layout-feature/top-navbar";
 
 export const FormLayout = () => {
   return (
-    <>
-      Form
-      <TopNavbar />
+    <main className="host:mx-auto host:max-w-lg host:p-4 host:pt-20">
       <Outlet />
-    </>
+    </main>
   );
 };

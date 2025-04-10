@@ -29,15 +29,26 @@ type AuthFieldsProps = {
 
 export const AuthFields = ({ form }: AuthFieldsProps) => {
   return (
-    <fieldset>
-      <Label>
-        <form.AppField name="email">{(field) => <field.Input />}</form.AppField>
-      </Label>
-      <Label>
-        <form.AppField name="password">
-          {(field) => <field.Input />}
+    <div className="flex flex-col gap-6">
+      <div className="grid gap-2">
+        <Label htmlFor="email">Email</Label>
+        <form.AppField name="email">
+          {(field) => (
+            <field.Input
+              id="email"
+              placeholder="m@example.com"
+              required
+              type="email"
+            />
+          )}
         </form.AppField>
-      </Label>
-    </fieldset>
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="password">Password</Label>
+        <form.AppField name="password">
+          {(field) => <field.Input id="password" required type="password" />}
+        </form.AppField>
+      </div>
+    </div>
   );
 };
