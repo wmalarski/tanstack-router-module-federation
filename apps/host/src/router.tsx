@@ -4,6 +4,8 @@ import {
   createRoute,
   createRouter,
   Outlet,
+  type ParsedLocation,
+  redirect,
   RouterProvider,
 } from "@tanstack/react-router";
 import { type UserContextValue, useUserContext } from "@trmf/auth-util";
@@ -14,6 +16,7 @@ import {
 } from "@trmf/supabase-util";
 import "@trmf/ui/globals.css";
 import { useState } from "react";
+import * as v from "valibot";
 import "./app.css";
 import { SignInRoute } from "./routes/sign-in-route";
 import { SignUpRoute } from "./routes/sign-up-route";
@@ -34,8 +37,33 @@ const rootRoute = createRootRouteWithContext<RootRouteContext>()({
   ),
 });
 
+type AuthGuardArgs = {
+  context: RootRouteContext;
+  location: ParsedLocation;
+};
+
+const authGuard = ({ context, location }: AuthGuardArgs) => {
+  if (!context.user.user) {
+    throw redirect({
+      to: "/sign-in",
+      search: { redirect: location.href },
+    });
+  }
+};
+
+type GuestGuardArgs = {
+  context: RootRouteContext;
+};
+
+const guestGuard = ({ context }: GuestGuardArgs) => {
+  if (context.user.user) {
+    throw redirect({ to: "/" });
+  }
+};
+
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
+  beforeLoad: authGuard,
   path: "/",
 }).lazy(() =>
   // @ts-ignore
@@ -44,6 +72,7 @@ const indexRoute = createRoute({
 
 const tagsRoute = createRoute({
   getParentRoute: () => rootRoute,
+  beforeLoad: authGuard,
   path: "/tags",
   // @ts-ignore
 }).lazy(() => import("tags/tags-router").then((module) => module.Route));
@@ -51,19 +80,23 @@ const tagsRoute = createRoute({
 const signUpRoute = createRoute({
   component: SignUpRoute,
   getParentRoute: () => rootRoute,
+  beforeLoad: guestGuard,
   path: "/sign-up",
 });
 
 const signUpSuccessRoute = createRoute({
   component: SignUpSuccessRoute,
-  getParentRoute: () => rootRoute,
-  path: "/sign-up/success",
+  getParentRoute: () => signUpRoute,
+  beforeLoad: guestGuard,
+  path: "/success",
 });
 
 const signInRoute = createRoute({
   component: SignInRoute,
   getParentRoute: () => rootRoute,
+  beforeLoad: guestGuard,
   path: "/sign-in",
+  validateSearch: v.object({ redirect: v.optional(v.string(), "") }),
 });
 
 const routeTree = rootRoute.addChildren([
