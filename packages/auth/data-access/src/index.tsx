@@ -5,11 +5,7 @@ import type {
   SignUpWithPasswordCredentials,
   User,
 } from "@supabase/supabase-js";
-import {
-  type MutationOptions,
-  queryOptions,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { type MutationOptions, queryOptions } from "@tanstack/react-query";
 import { useCallbackRef } from "@trmf/hooks-util/use-callback-ref";
 import {
   getSupabaseContext,
@@ -96,7 +92,7 @@ export const useOnAuthStateChangeListener = ({
   onSuccess,
 }: UseOnAuthStateChangeListenerArgs) => {
   const supabase = useSupabaseContext();
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   const onSuccessRef = useCallbackRef(onSuccess);
 
@@ -104,7 +100,7 @@ export const useOnAuthStateChangeListener = ({
     const result = supabase.auth.onAuthStateChange((_event, session) => {
       const options = getUserQueryOptions();
       console.log("onAuthStateChange", options.queryKey, session?.user);
-      queryClient?.setQueryData(options.queryKey, session?.user);
+      // queryClient?.setQueryData(options.queryKey, session?.user);
       onSuccessRef(session?.user ?? null);
     });
 
@@ -112,7 +108,7 @@ export const useOnAuthStateChangeListener = ({
       result.data.subscription.unsubscribe();
     };
   }, [
-    queryClient?.setQueryData,
+    // queryClient?.setQueryData,
     supabase.auth.onAuthStateChange,
     onSuccessRef,
   ]);

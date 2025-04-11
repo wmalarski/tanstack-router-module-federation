@@ -1,6 +1,4 @@
-import type { QueryClient } from "@tanstack/react-query";
 import { type ParsedLocation, redirect } from "@tanstack/react-router";
-import { getUserQueryOptions } from "@trmf/auth-data-access";
 import type { RootRouteContext } from "./router-context";
 
 type AuthGuardArgs = {
@@ -8,12 +6,12 @@ type AuthGuardArgs = {
   location: ParsedLocation;
 };
 
-const getCachedUser = (queryClient: QueryClient) => {
-  return queryClient.getQueryData(getUserQueryOptions().queryKey);
+const getUser = (context: RootRouteContext) => {
+  return context.userStore.getSnapshot().context.user;
 };
 
 export const authGuard = ({ context, location }: AuthGuardArgs) => {
-  const user = getCachedUser(context.queryClient);
+  const user = getUser(context);
 
   console.log("authGuard", { context, location, user });
 
@@ -30,7 +28,7 @@ type GuestGuardArgs = {
 };
 
 export const guestGuard = ({ context }: GuestGuardArgs) => {
-  const user = getCachedUser(context.queryClient);
+  const user = getUser(context);
 
   console.log("guestGuard", { context, user });
 

@@ -5,9 +5,10 @@ import {
   createRouter,
   RouterProvider,
 } from "@tanstack/react-router";
+import { useUserStore } from "@trmf/auth-util";
 import { getSupabaseContext } from "@trmf/supabase-util";
 import "@trmf/ui/globals.css";
-import { useState } from "react";
+import { useMemo } from "react";
 import * as v from "valibot";
 import "./app.css";
 import { FormLayout } from "./layouts/form-layout";
@@ -87,8 +88,12 @@ export type RouterType = ReturnType<typeof getRouter>;
 
 export const Router = () => {
   const supabase = getSupabaseContext();
+  const userStore = useUserStore();
 
-  const [router] = useState(() => getRouter({ queryClient, supabase }));
+  const router = useMemo(
+    () => getRouter({ queryClient, supabase, userStore }),
+    [supabase, userStore],
+  );
 
   console.log("Router", router.options.context);
 
