@@ -3,16 +3,12 @@ import type {
   AuthTokenResponsePassword,
   SignInWithPasswordCredentials,
   SignUpWithPasswordCredentials,
-  User,
 } from "@supabase/supabase-js";
 import { type MutationOptions, queryOptions } from "@tanstack/react-query";
-import { useCallbackRef } from "@trmf/hooks-util/use-callback-ref";
 import {
   getSupabaseContext,
   type SupabaseTypedClient,
-  useSupabaseContext,
 } from "@trmf/supabase-util";
-import { useEffect } from "react";
 
 export const getUserQueryOptions = () => {
   const supabase = getSupabaseContext();
@@ -81,24 +77,4 @@ export const signOutMutationOptions = ({
     mutationFn: () => supabase.auth.signOut(),
     onSuccess,
   };
-};
-
-type UseOnAuthStateChangeListenerArgs = {
-  onSuccess: (user: User | null) => void;
-};
-
-export const useOnAuthStateChangeListener = ({
-  onSuccess,
-}: UseOnAuthStateChangeListenerArgs) => {
-  const supabase = useSupabaseContext();
-
-  const onSuccessRef = useCallbackRef(onSuccess);
-
-  useEffect(() => {
-    const result = supabase.auth.onAuthStateChange((_event, session) =>
-      onSuccessRef(session?.user ?? null),
-    );
-
-    return () => result.data.subscription.unsubscribe();
-  }, [supabase.auth.onAuthStateChange, onSuccessRef]);
 };
