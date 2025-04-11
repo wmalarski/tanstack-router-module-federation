@@ -6,14 +6,12 @@ type AuthGuardArgs = {
   location: ParsedLocation;
 };
 
-const getUser = (context: RootRouteContext) => {
+const getUserFromStore = (context: RootRouteContext) => {
   return context.userStore.getSnapshot().context.user;
 };
 
 export const authGuard = ({ context, location }: AuthGuardArgs) => {
-  const user = getUser(context);
-
-  console.log("authGuard", { context, location, user });
+  const user = getUserFromStore(context);
 
   if (!user) {
     throw redirect({
@@ -28,9 +26,7 @@ type GuestGuardArgs = {
 };
 
 export const guestGuard = ({ context }: GuestGuardArgs) => {
-  const user = getUser(context);
-
-  console.log("guestGuard", { context, user });
+  const user = getUserFromStore(context);
 
   if (user) {
     throw redirect({ to: "/" });

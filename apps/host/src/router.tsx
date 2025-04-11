@@ -95,7 +95,5 @@ export const Router = () => {
     [supabase, userStore],
   );
 
-  console.log("Router", router.options.context);
-
   return <RouterProvider router={router} />;
 };

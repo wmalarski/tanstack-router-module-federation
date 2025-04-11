@@ -5,12 +5,11 @@ import { Button } from "@trmf/ui/components/button";
 import type { ComponentProps } from "react";
 
 export const SignOutButton = () => {
-  const navigate = useNavigate({ from: "/" });
+  const navigate = useNavigate();
 
   const signOutMutation = useMutation(
     signOutMutationOptions({
       onSuccess: async () => {
-        console.log("signOutMutation-onSuccess");
         await navigate({ to: "/sign-in" });
       },
     }),

@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { signInWithPasswordMutationOptions } from "@trmf/auth-data-access";
-import { Button } from "@trmf/ui/components/button";
 import {
   Card,
   CardContent,
@@ -55,14 +54,6 @@ export const SignInForm = () => {
             </Link>
           </div>
         </form>
-        <Button
-          onClick={async () => {
-            const res = await navigate({ to: "/" });
-            console.log("NAVIGATE", res);
-          }}
-        >
-          Navigate
-        </Button>
       </CardContent>
     </Card>
   );

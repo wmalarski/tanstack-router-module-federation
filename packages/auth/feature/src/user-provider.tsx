@@ -16,12 +16,9 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   useOnAuthStateChangeListener({
     onSuccess: (user) => {
-      console.log("useOnAuthStateChangeListener", user);
       contextValue.userStore.send({ type: "setUser", user });
     },
   });
-
-  console.log("UserProvider", contextValue);
 
   return <UserContext value={contextValue}>{children}</UserContext>;
 };

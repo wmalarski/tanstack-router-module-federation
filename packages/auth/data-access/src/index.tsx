@@ -35,19 +35,21 @@ export const signInWithPasswordMutationOptions = ({
   Error,
   SignInWithPasswordCredentials
 > => {
-  // const queryClient = use(QueryClientContext);
   const supabase = getSupabaseContext();
 
   return {
     mutationFn: (args) => supabase.auth.signInWithPassword(args),
-    onSuccess: (data) => {
-      // queryClient?.setQueryData(getUserQueryOptions().queryKey, data.data.user);
-      onSuccess(data);
-    },
+    onSuccess,
   };
 };
 
-export const signUpMutationOptions = (): MutationOptions<
+type SignUpMutationOptionsArgs = {
+  onSuccess: (data: AuthResponse) => void;
+};
+
+export const signUpMutationOptions = ({
+  onSuccess,
+}: SignUpMutationOptionsArgs): MutationOptions<
   AuthResponse,
   Error,
   SignUpWithPasswordCredentials
@@ -55,6 +57,7 @@ export const signUpMutationOptions = (): MutationOptions<
   const supabase = getSupabaseContext();
   return {
     mutationFn: (args) => supabase.auth.signUp(args),
+    onSuccess,
   };
 };
 
@@ -70,17 +73,9 @@ export const signOutMutationOptions = ({
   onSuccess,
 }: SignOutMutationOptionsArgs): MutationOptions<SignOutResponse, Error> => {
   const supabase = getSupabaseContext();
-  // const queryClient = use(QueryClientContext);
-
   return {
     mutationFn: () => supabase.auth.signOut(),
-    onSuccess: (data) => {
-      // queryClient?.removeQueries({
-      //   queryKey: getUserQueryOptions().queryKey,
-      //   exact: true,
-      // });
-      onSuccess(data);
-    },
+    onSuccess,
   };
 };
 
@@ -92,24 +87,13 @@ export const useOnAuthStateChangeListener = ({
   onSuccess,
 }: UseOnAuthStateChangeListenerArgs) => {
   const supabase = useSupabaseContext();
-  // const queryClient = useQueryClient();
-
   const onSuccessRef = useCallbackRef(onSuccess);
 
   useEffect(() => {
-    const result = supabase.auth.onAuthStateChange((_event, session) => {
-      const options = getUserQueryOptions();
-      console.log("onAuthStateChange", options.queryKey, session?.user);
-      // queryClient?.setQueryData(options.queryKey, session?.user);
-      onSuccessRef(session?.user ?? null);
-    });
+    const result = supabase.auth.onAuthStateChange((_event, session) =>
+      onSuccessRef(session?.user ?? null),
+    );
 
-    return () => {
-      result.data.subscription.unsubscribe();
-    };
-  }, [
-    // queryClient?.setQueryData,
-    supabase.auth.onAuthStateChange,
-    onSuccessRef,
-  ]);
+    return () => result.data.subscription.unsubscribe();
+  }, [supabase.auth.onAuthStateChange, onSuccessRef]);
 };
