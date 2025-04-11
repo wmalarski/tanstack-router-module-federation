@@ -34,7 +34,7 @@ export const SignUpForm = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={onSubmit} className="flex flex-col gap-6">
+        <form className="flex flex-col gap-6" onSubmit={onSubmit}>
           <AuthFields form={form} />
           <form.AppForm>
             <form.Button type="submit">Sign Up</form.Button>

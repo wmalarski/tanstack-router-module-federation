@@ -4,6 +4,7 @@
     "@tailwindcss/vite": "^4.1.3",
     "@tanstack/react-query": "^5.72.2",
     "@tanstack/react-router": "^1.115.2",
+    "@trmf/auth-data-access": "workspace:*",
     "@trmf/auth-feature": "workspace:*",
     "@trmf/auth-util": "workspace:*",
     "@trmf/shared-layout-feature": "workspace:*",

@@ -8,7 +8,7 @@ import {
 import { useUserContext } from "@trmf/auth-util";
 import { getSupabaseContext } from "@trmf/supabase-util";
 import "@trmf/ui/globals.css";
-import { useState } from "react";
+import { useMemo } from "react";
 import * as v from "valibot";
 import "./app.css";
 import { FormLayout } from "./layouts/form-layout";
@@ -90,7 +90,9 @@ export const Router = () => {
   const user = useUserContext();
   const supabase = getSupabaseContext();
 
-  const [router] = useState(() => getRouter({ queryClient, supabase, user }));
+  const router = useMemo(() => getRouter({ queryClient, supabase, user }), []);
+
+  console.log('Router', router.options.context)
 
   return <RouterProvider router={router} />;
 };

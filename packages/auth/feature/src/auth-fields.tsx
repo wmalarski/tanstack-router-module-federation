@@ -36,12 +36,12 @@ export const AuthFields = ({ form }: AuthFieldsProps) => {
           {(field) => (
             <field.Input
               id="email"
-              placeholder="m@example.com"
               name={field.name}
+              onChange={(event) => field.handleChange(event.target.value)}
+              placeholder="m@example.com"
               required
               type="email"
               value={field.state.value}
-              onChange={(event) => field.handleChange(event.target.value)}
             />
           )}
         </form.AppField>
@@ -51,12 +51,12 @@ export const AuthFields = ({ form }: AuthFieldsProps) => {
         <form.AppField name="password">
           {(field) => (
             <field.Input
-              name="password"
               id="password"
+              name="password"
+              onChange={(event) => field.handleChange(event.target.value)}
               required
               type="password"
               value={field.state.value}
-              onChange={(event) => field.handleChange(event.target.value)}
             />
           )}
         </form.AppField>

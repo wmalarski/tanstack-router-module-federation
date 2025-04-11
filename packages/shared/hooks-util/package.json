@@ -1,9 +1,5 @@
 {
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.4",
-    "@tanstack/react-query": "^5.72.2",
-    "@trmf/hooks-util": "workspace:*",
-    "@trmf/supabase-util": "workspace:*",
     "react": "^19.1.0"
   },
   "devDependencies": {
@@ -11,9 +7,9 @@
     "@types/react": "19.1.0"
   },
   "exports": {
-    ".": "./src/index.tsx"
+    "./*": "./src/*.ts"
   },
-  "name": "@trmf/auth-data-access",
+  "name": "@trmf/hooks-util",
   "private": true,
   "scripts": {
     "check-types": "tsc --noEmit"

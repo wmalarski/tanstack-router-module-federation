@@ -8,7 +8,12 @@ import { type PropsWithChildren, useMemo } from "react";
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
   const userQuery = useSuspenseQuery(getUserQueryOptions());
-  useOnAuthStateChangeListener();
+
+  useOnAuthStateChangeListener({
+    onSuccess: (user) => {
+      console.log("useOnAuthStateChangeListener", user);
+    },
+  });
 
   const value = useMemo(() => ({ user: userQuery.data }), [userQuery.data]);
 

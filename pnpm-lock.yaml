@@ -87,6 +87,9 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.115.2
         version: 1.115.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trmf/auth-data-access':
+        specifier: workspace:*
+        version: link:../../packages/auth/data-access
       '@trmf/auth-feature':
         specifier: workspace:*
         version: link:../../packages/auth/feature
@@ -194,6 +197,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.72.2
         version: 5.72.2(react@19.1.0)
+      '@trmf/hooks-util':
+        specifier: workspace:*
+        version: link:../../shared/hooks-util
       '@trmf/supabase-util':
         specifier: workspace:*
         version: link:../../supabase/util
@@ -278,6 +284,19 @@ importers:
       '@trmf/supabase-util':
         specifier: workspace:*
         version: link:../../supabase/util
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+    devDependencies:
+      '@trmf/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: 19.1.0
+        version: 19.1.0
+
+  packages/shared/hooks-util:
+    dependencies:
       react:
         specifier: ^19.1.0
         version: 19.1.0
