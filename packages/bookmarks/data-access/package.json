@@ -11,7 +11,7 @@
     "@types/react": "19.1.0"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.tsx"
   },
   "name": "@trmf/auth-data-access",
   "private": true,
