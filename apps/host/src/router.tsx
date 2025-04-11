@@ -5,10 +5,9 @@ import {
   createRouter,
   RouterProvider,
 } from "@tanstack/react-router";
-import { useUserContext } from "@trmf/auth-util";
 import { getSupabaseContext } from "@trmf/supabase-util";
 import "@trmf/ui/globals.css";
-import { useMemo } from "react";
+import { useState } from "react";
 import * as v from "valibot";
 import "./app.css";
 import { FormLayout } from "./layouts/form-layout";
@@ -87,12 +86,11 @@ const getRouter = (context: RootRouteContext) => {
 export type RouterType = ReturnType<typeof getRouter>;
 
 export const Router = () => {
-  const user = useUserContext();
   const supabase = getSupabaseContext();
 
-  const router = useMemo(() => getRouter({ queryClient, supabase, user }), []);
+  const [router] = useState(() => getRouter({ queryClient, supabase }));
 
-  console.log('Router', router.options.context)
+  console.log("Router", router.options.context);
 
   return <RouterProvider router={router} />;
 };
