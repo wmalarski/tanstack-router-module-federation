@@ -1,4 +1,8 @@
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import {
+  createClient,
+  type PostgrestSingleResponse,
+  type SupabaseClient,
+} from "@supabase/supabase-js";
 import { createContext, type PropsWithChildren, use, useContext } from "react";
 import type { Database } from "./types";
 
@@ -44,4 +48,11 @@ export const getSupabaseContext = () => {
   }
 
   return supabase;
+};
+
+export const getPostgrestData = <T,>(response: PostgrestSingleResponse<T>) => {
+  if (response.error) {
+    throw response.error;
+  }
+  return response.data;
 };

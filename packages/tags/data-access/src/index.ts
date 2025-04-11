@@ -1,17 +1,15 @@
-import type { PostgrestSingleResponse } from "@supabase/supabase-js";
-import { type MutationOptions, queryOptions } from "@tanstack/react-query";
-import { getSupabaseContext } from "@trmf/supabase-util";
+import {
+  type MutationOptions,
+  type QueryClient,
+  QueryClientContext,
+  queryOptions,
+} from "@tanstack/react-query";
+import { getPostgrestData, getSupabaseContext } from "@trmf/supabase-util";
+import { use } from "react";
 
 type SelectTagsQueryOptionsArgs = {
   offset: number;
   limit: number;
-};
-
-const getPostgrestData = <T>(response: PostgrestSingleResponse<T>) => {
-  if (response.error) {
-    throw response.error;
-  }
-  return response.data;
 };
 
 export const selectTagsQueryOptions = (args: SelectTagsQueryOptionsArgs) => {
@@ -31,6 +29,12 @@ export const selectTagsQueryOptions = (args: SelectTagsQueryOptionsArgs) => {
   });
 };
 
+const invalidateTags = async (queryClient?: QueryClient) => {
+  const options = selectTagsQueryOptions({ limit: 0, offset: 0 });
+  const queryKey = options.queryKey.slice(0, 2);
+  await queryClient?.invalidateQueries({ queryKey, exact: false });
+};
+
 type InsertTagMutationOptionsVariables = {
   name: string;
 };
@@ -41,11 +45,15 @@ export const insertTagMutationOptions = (): MutationOptions<
   InsertTagMutationOptionsVariables
 > => {
   const supabase = getSupabaseContext();
+  const queryClient = use(QueryClientContext);
 
   return {
     mutationFn: async (args) => {
       const response = await supabase.from("tags").insert(args);
       return getPostgrestData(response);
+    },
+    onSuccess: () => {
+      invalidateTags(queryClient);
     },
   };
 };
@@ -60,6 +68,7 @@ export const deleteTagMutationOptions = (): MutationOptions<
   DeleteTagMutationOptionsVariables
 > => {
   const supabase = getSupabaseContext();
+  const queryClient = use(QueryClientContext);
 
   return {
     mutationFn: async (args) => {
@@ -68,6 +77,9 @@ export const deleteTagMutationOptions = (): MutationOptions<
         .delete()
         .eq("id", args.tagId);
       return getPostgrestData(response);
+    },
+    onSuccess: () => {
+      invalidateTags(queryClient);
     },
   };
 };
@@ -83,6 +95,7 @@ export const updateTagMutationOptions = (): MutationOptions<
   UpdateTagMutationOptionsVariables
 > => {
   const supabase = getSupabaseContext();
+  const queryClient = use(QueryClientContext);
 
   return {
     mutationFn: async (args) => {
@@ -91,6 +104,9 @@ export const updateTagMutationOptions = (): MutationOptions<
         .update(args)
         .eq("id", args.tagId);
       return getPostgrestData(response);
+    },
+    onSuccess: () => {
+      invalidateTags(queryClient);
     },
   };
 };

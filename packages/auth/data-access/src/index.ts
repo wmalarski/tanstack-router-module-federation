@@ -5,10 +5,7 @@ import type {
   SignUpWithPasswordCredentials,
 } from "@supabase/supabase-js";
 import { type MutationOptions, queryOptions } from "@tanstack/react-query";
-import {
-  getSupabaseContext,
-  type SupabaseTypedClient,
-} from "@trmf/supabase-util";
+import { getSupabaseContext } from "@trmf/supabase-util";
 
 export const getUserQueryOptions = () => {
   const supabase = getSupabaseContext();
@@ -22,59 +19,83 @@ export const getUserQueryOptions = () => {
   });
 };
 
+type AuthTokenResponsePasswordData = (AuthTokenResponsePassword & {
+  error: null;
+})["data"];
+
 type SignInWithPasswordMutationOptionsArgs = {
-  onSuccess: (data: AuthTokenResponsePassword) => void;
+  onSuccess: (data: AuthTokenResponsePasswordData) => void;
 };
 
 export const signInWithPasswordMutationOptions = ({
   onSuccess,
 }: SignInWithPasswordMutationOptionsArgs): MutationOptions<
-  AuthTokenResponsePassword,
+  AuthTokenResponsePasswordData,
   Error,
   SignInWithPasswordCredentials
 > => {
   const supabase = getSupabaseContext();
 
   return {
-    mutationFn: (args) => supabase.auth.signInWithPassword(args),
+    mutationFn: async (args) => {
+      const response = await supabase.auth.signInWithPassword(args);
+
+      if (response.error) {
+        throw response.error;
+      }
+
+      return response.data;
+    },
     onSuccess,
   };
 };
 
+type AuthResponseData = (AuthResponse & { error: null })["data"];
+
 type SignUpMutationOptionsArgs = {
-  onSuccess: (data: AuthResponse) => void;
+  onSuccess: (data: AuthResponseData) => void;
 };
 
 export const signUpMutationOptions = ({
   onSuccess,
 }: SignUpMutationOptionsArgs): MutationOptions<
-  AuthResponse,
+  AuthResponseData,
   Error,
   SignUpWithPasswordCredentials
 > => {
   const supabase = getSupabaseContext();
 
   return {
-    mutationFn: (args) => supabase.auth.signUp(args),
+    mutationFn: async (args) => {
+      const response = await supabase.auth.signUp(args);
+
+      if (response.error) {
+        throw response.error;
+      }
+
+      return response.data;
+    },
     onSuccess,
   };
 };
 
-type SignOutResponse = Awaited<
-  ReturnType<SupabaseTypedClient["auth"]["signOut"]>
->;
-
 type SignOutMutationOptionsArgs = {
-  onSuccess: (data: SignOutResponse) => void;
+  onSuccess: () => void;
 };
 
 export const signOutMutationOptions = ({
   onSuccess,
-}: SignOutMutationOptionsArgs): MutationOptions<SignOutResponse, Error> => {
+}: SignOutMutationOptionsArgs): MutationOptions<void, Error> => {
   const supabase = getSupabaseContext();
 
   return {
-    mutationFn: () => supabase.auth.signOut(),
+    mutationFn: async () => {
+      const response = await supabase.auth.signOut();
+
+      if (response.error) {
+        throw response.error;
+      }
+    },
     onSuccess,
   };
 };
