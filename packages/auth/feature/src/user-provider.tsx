@@ -25,18 +25,17 @@ export const UserChangeListener = () => {
 
   useEffect(() => {
     const userQueryKey = getUserQueryOptions().queryKey;
-    const result = supabase.auth.onAuthStateChange(async (_event, session) => {
-      const user = session?.user ?? null;
-      queryClient.setQueryData(userQueryKey, user);
+    const result = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "INITIAL_SESSION") {
+        return;
+      }
+
+      queryClient.setQueryData(userQueryKey, session?.user ?? null);
       await router.invalidate();
     });
 
     return () => result.data.subscription.unsubscribe();
-  }, [
-    supabase.auth.onAuthStateChange,
-    router.invalidate,
-    queryClient.setQueryData,
-  ]);
+  }, [supabase, router.invalidate, queryClient.setQueryData]);
 
   return null;
 };
