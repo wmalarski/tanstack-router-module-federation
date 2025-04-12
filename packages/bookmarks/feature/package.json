@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@tanstack/react-query": "^5.72.2",
     "@tanstack/react-router": "^1.115.2",
     "@trmf/bookmarks-data-access": "workspace:*",
     "@trmf/ui": "workspace:*",

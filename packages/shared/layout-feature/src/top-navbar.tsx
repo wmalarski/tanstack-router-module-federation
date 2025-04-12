@@ -18,6 +18,11 @@ export const TopNavbar = () => {
             About
           </Link>
         </li>
+        <li>
+          <Link className="host:[&.active]:font-bold" to="/share">
+            Share
+          </Link>
+        </li>
         {user ? (
           <li>
             <SignOutButton />

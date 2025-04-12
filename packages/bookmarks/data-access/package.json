@@ -8,7 +8,7 @@
     "@trmf/typescript-config": "workspace:*"
   },
   "exports": {
-    ".": "./src/index.tsx"
+    ".": "./src/index.ts"
   },
   "name": "@trmf/bookmarks-data-access",
   "private": true,

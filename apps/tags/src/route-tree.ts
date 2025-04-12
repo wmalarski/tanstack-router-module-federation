@@ -10,11 +10,16 @@ type GetTagsRouteTreeArgs<TParentRoute extends AnyRoute = AnyRoute> = {
 export const getTagsRouteTree = <TParentRoute extends AnyRoute = AnyRoute>({
   parentRoute,
 }: GetTagsRouteTreeArgs<TParentRoute>) => {
-  const route = createRoute({
-    component: TagsListRoute,
+  const baseRoute = createRoute({
     getParentRoute: () => parentRoute,
+    id: "tags",
+  });
+
+  const listRoute = createRoute({
+    component: TagsListRoute,
+    getParentRoute: () => baseRoute,
     path: "/tags",
   });
 
-  return route;
+  return baseRoute.addChildren([listRoute]);
 };

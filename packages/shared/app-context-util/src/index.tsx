@@ -1,5 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { useRouteContext } from "@tanstack/react-router";
+import { Outlet, useRouteContext } from "@tanstack/react-router";
 import { UserContext } from "@trmf/auth-util";
 import { SupabaseProvider } from "@trmf/supabase-util";
 import { type PropsWithChildren, useMemo } from "react";
@@ -18,5 +18,13 @@ export const AppContextProvider = ({ children }: PropsWithChildren) => {
         <UserContext value={userContextValue}>{children}</UserContext>
       </SupabaseProvider>
     </QueryClientProvider>
+  );
+};
+
+export const AppContextLayout = () => {
+  return (
+    <AppContextProvider>
+      <Outlet />
+    </AppContextProvider>
   );
 };
