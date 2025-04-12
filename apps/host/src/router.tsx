@@ -3,31 +3,39 @@ import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { useUser } from "@trmf/auth-util";
 import { getSupabaseContext } from "@trmf/supabase-util";
 import "@trmf/ui/globals.css";
-import { useMemo } from "react";
+import { use, useMemo } from "react";
 import "./app.css";
-import { getRouteTree } from "./route-tree";
+import type { AsyncRouteTree } from "./route-tree";
 import type { RootRouteContext } from "./router-context";
 
-const getRouter = (context: RootRouteContext) => {
+const getRouter = (routeTree: AsyncRouteTree, context: RootRouteContext) => {
   return createRouter({
     context,
     defaultPreload: "intent",
-    routeTree: getRouteTree(),
+    routeTree,
     scrollRestoration: true,
   });
 };
 
 export type RouterType = ReturnType<typeof getRouter>;
 
-export const Router = () => {
+type RouterProps = {
+  routeTree: Promise<AsyncRouteTree>;
+};
+
+export const Router = ({ routeTree }: RouterProps) => {
   const supabase = getSupabaseContext();
   const user = useUser();
   const queryClient = useQueryClient();
 
+  const resolvedRouteTree = use(routeTree);
+
   const router = useMemo(
-    () => getRouter({ queryClient, supabase, user }),
-    [supabase, user, queryClient],
+    () => getRouter(resolvedRouteTree, { queryClient, supabase, user }),
+    [supabase, user, queryClient, resolvedRouteTree],
   );
+
+  console.log("resolvedRouteTree", resolvedRouteTree);
 
   return <RouterProvider router={router} />;
 };

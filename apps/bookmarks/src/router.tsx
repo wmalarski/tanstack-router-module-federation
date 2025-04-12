@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-router";
 import App from "./app";
 
-export const Route = createLazyRoute("/protected/")({
+export const Route = createLazyRoute("/protected")({
   component: App,
 });
 
