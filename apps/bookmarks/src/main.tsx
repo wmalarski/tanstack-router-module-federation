@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./bookmark-list-page";
+import { BookmarkListRoute } from "./routes/bookmark-list-route";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <BookmarkListRoute />
   </React.StrictMode>,
 );

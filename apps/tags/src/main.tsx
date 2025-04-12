@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./tags-list-page";
+import { TagsListRoute } from "./routes/tags-list-route";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <TagsListRoute />
   </React.StrictMode>,
 );

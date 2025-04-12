@@ -18,7 +18,7 @@ export default defineConfig(() => {
     plugins: [
       federation({
         exposes: {
-          "./bookmarks-router": "./src/router.tsx",
+          "./bookmarks-route-tree": "./src/route-tree.ts",
         },
         filename: "remoteEntry.js",
         name: "bookmarks",

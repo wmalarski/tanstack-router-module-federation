@@ -18,7 +18,7 @@ export default defineConfig(() => {
     plugins: [
       federation({
         exposes: {
-          "./tags-router": "./src/router.tsx",
+          "./tags-route-tree": "./src/route-tree.ts",
         },
         filename: "remoteEntry.js",
         name: "tags",

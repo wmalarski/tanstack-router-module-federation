@@ -1,5 +1,5 @@
 import { type ParsedLocation, redirect } from "@tanstack/react-router";
-import type { RootRouteContext } from "./router-context";
+import type { RootRouteContext } from "./route-context";
 
 type AuthGuardArgs = {
   context: RootRouteContext;

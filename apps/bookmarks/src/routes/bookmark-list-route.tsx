@@ -1,7 +1,7 @@
 import { AppContextProvider } from "@trmf/app-context-util";
 import { BookmarksList } from "@trmf/bookmarks-feature/bookmarks-list";
 
-export const BookmarkListPage = () => {
+export const BookmarkListRoute = () => {
   return (
     <AppContextProvider>
       <BookmarksList />

@@ -2,11 +2,10 @@ import { useQueryClient } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { useUser } from "@trmf/auth-util";
 import { getSupabaseContext } from "@trmf/supabase-util";
-import "@trmf/ui/globals.css";
 import { use, useMemo } from "react";
-import "./app.css";
+
+import type { RootRouteContext } from "./route-context";
 import type { AsyncRouteTree } from "./route-tree";
-import type { RootRouteContext } from "./router-context";
 
 const getRouter = (routeTree: AsyncRouteTree, context: RootRouteContext) => {
   return createRouter({

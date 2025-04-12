@@ -3,15 +3,15 @@ import {
   createRoute,
 } from "@tanstack/react-router";
 import * as v from "valibot";
-import type { GetBookmarksRoute } from "../../bookmarks/src/route";
-import type { GetTagsRoute } from "../../tags/src/route";
-import { FormLayout } from "./layouts/form-layout";
-import { ProtectedLayout } from "./layouts/protected-layout";
-import type { RootRouteContext } from "./router-context";
-import { authGuard, guestGuard } from "./router-guards";
-import { SignInRoute } from "./routes/sign-in-route";
-import { SignUpRoute } from "./routes/sign-up-route";
-import { SignUpSuccessRoute } from "./routes/sign-up-success-route";
+import type { GetBookmarksRoute } from "../../../bookmarks/src/route";
+import type { GetTagsRoute } from "../../../tags/src/route";
+import { FormLayout } from "../layouts/form-layout";
+import { ProtectedLayout } from "../layouts/protected-layout";
+import { SignInRoute } from "../routes/sign-in-route";
+import { SignUpRoute } from "../routes/sign-up-route";
+import { SignUpSuccessRoute } from "../routes/sign-up-success-route";
+import type { RootRouteContext } from "./route-context";
+import { authGuard, guestGuard } from "./route-guards";
 
 export const getAsyncRouteTree = async () => {
   const rootRoute = createRootRouteWithContext<RootRouteContext>()({});
@@ -25,12 +25,12 @@ export const getAsyncRouteTree = async () => {
 
   const [getBookmarksRoute, getTagsRoute] = await Promise.all([
     // @ts-ignore
-    import("bookmarks/bookmarks-router").then(
-      (module) => module.getBookmarksRoute as GetBookmarksRoute,
+    import("bookmarks/bookmarks-route-tree").then(
+      (module) => module.getBookmarksRouteTree as GetBookmarksRoute,
     ),
     // @ts-ignore
-    import("tags/tags-router").then(
-      (module) => module.getTagsRoute as GetTagsRoute,
+    import("tags/tags-route-tree").then(
+      (module) => module.getTagsRouteTree as GetTagsRoute,
     ),
   ]);
 

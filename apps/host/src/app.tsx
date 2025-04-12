@@ -7,8 +7,8 @@ import {
 import "@trmf/ui/globals.css";
 import { Suspense } from "react";
 import "./app.css";
-import type { AsyncRouteTree } from "./route-tree";
-import { Router } from "./router";
+import type { AsyncRouteTree } from "./router/route-tree";
+import { Router } from "./router/router";
 
 const queryClient = new QueryClient();
 

@@ -1,3 +1,3 @@
-import type { getTagsRoute } from "./router";
+import type { getTagsRouteTree } from "./route-tree";
 
-export type GetTagsRoute = typeof getTagsRoute;
+export type GetTagsRoute = typeof getTagsRouteTree;

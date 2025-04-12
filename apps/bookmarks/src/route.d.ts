@@ -1,3 +1,3 @@
-import type { getBookmarksRoute } from "./router";
+import type { getBookmarksRouteTree } from "./route-tree";
 
-export type GetBookmarksRoute = typeof getBookmarksRoute;
+export type GetBookmarksRoute = typeof getBookmarksRouteTree;
