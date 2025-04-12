@@ -13,6 +13,8 @@ export const getSupabaseClient = () => {
   );
 };
 
+export type SupabaseDatabase = Database;
+
 export type SupabaseTypedClient = SupabaseClient<Database>;
 
 type SupabaseContextValue = SupabaseTypedClient | null;

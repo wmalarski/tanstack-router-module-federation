@@ -2,18 +2,15 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
     "@tanstack/react-query": "^5.72.2",
-    "@trmf/hooks-util": "workspace:*",
-    "@trmf/supabase-util": "workspace:*",
-    "react": "^19.1.0"
+    "@trmf/supabase-util": "workspace:*"
   },
   "devDependencies": {
-    "@trmf/typescript-config": "workspace:*",
-    "@types/react": "19.1.0"
+    "@trmf/typescript-config": "workspace:*"
   },
   "exports": {
     ".": "./src/index.tsx"
   },
-  "name": "@trmf/auth-data-access",
+  "name": "@trmf/bookmarks-data-access",
   "private": true,
   "scripts": {
     "check-types": "tsc --noEmit"
