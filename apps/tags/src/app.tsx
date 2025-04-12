@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { AppContextProvider } from "@trmf/app-context-util";
-import { useUserContext } from "@trmf/auth-util";
+import { useUser } from "@trmf/auth-util";
 import { Button } from "@trmf/ui/components/button";
 import "@trmf/ui/globals.css";
 import "./app.css";
@@ -26,7 +26,7 @@ export const App = () => {
 };
 
 const UserInfo = () => {
-  const user = useUserContext();
+  const user = useUser();
 
   return <pre>{JSON.stringify(user, null, 2)}</pre>;
 };
