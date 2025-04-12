@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { SignOutButton } from "@trmf/auth-feature/sign-out-button";
-import { useUserContext } from "@trmf/auth-util";
+import { useUser } from "@trmf/auth-util";
 
 export const TopNavbar = () => {
-  const user = useUserContext();
+  const user = useUser();
 
   return (
     <nav className="host:flex host:gap-2 host:p-2">

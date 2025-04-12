@@ -6,14 +6,8 @@ type AuthGuardArgs = {
   location: ParsedLocation;
 };
 
-const getUserFromStore = (context: RootRouteContext) => {
-  return context.user;
-};
-
 export const authGuard = ({ context, location }: AuthGuardArgs) => {
-  const user = getUserFromStore(context);
-
-  if (!user) {
+  if (!context.user) {
     throw redirect({
       search: { redirect: location.href },
       to: "/sign-in",
@@ -26,9 +20,7 @@ type GuestGuardArgs = {
 };
 
 export const guestGuard = ({ context }: GuestGuardArgs) => {
-  const user = getUserFromStore(context);
-
-  if (user) {
+  if (context.user) {
     throw redirect({ to: "/" });
   }
 };
