@@ -1,24 +1,13 @@
 {
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.3",
-    "@tanstack/react-query": "^5.72.2",
-    "@tanstack/react-router": "^1.115.2",
     "@trmf/app-context-util": "workspace:*",
     "@trmf/auth-util": "workspace:*",
     "@trmf/supabase-util": "workspace:*",
     "@trmf/tags-feature": "workspace:*",
-    "@trmf/ui": "workspace:*",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.3"
+    "@trmf/ui": "workspace:*"
   },
   "devDependencies": {
-    "@module-federation/vite": "1.2.6",
-    "@trmf/typescript-config": "workspace:*",
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.2",
-    "@vitejs/plugin-react": "4.3.4",
-    "vite": "6.2.5"
+    "@trmf/typescript-config": "workspace:*"
   },
   "name": "@trmf/tags",
   "scripts": {

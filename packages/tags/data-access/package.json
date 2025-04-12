@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.4",
-    "@tanstack/react-query": "^5.72.2",
     "@trmf/supabase-util": "workspace:*"
   },
   "devDependencies": {

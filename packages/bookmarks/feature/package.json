@@ -1,14 +1,10 @@
 {
   "dependencies": {
-    "@tanstack/react-query": "^5.72.2",
-    "@tanstack/react-router": "^1.115.2",
     "@trmf/bookmarks-data-access": "workspace:*",
-    "@trmf/ui": "workspace:*",
-    "react": "^19.1.0"
+    "@trmf/ui": "workspace:*"
   },
   "devDependencies": {
-    "@trmf/typescript-config": "workspace:*",
-    "@types/react": "19.1.0"
+    "@trmf/typescript-config": "workspace:*"
   },
   "exports": {
     "./*": "./src/*.tsx"

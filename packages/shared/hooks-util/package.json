@@ -1,10 +1,6 @@
 {
-  "dependencies": {
-    "react": "^19.1.0"
-  },
   "devDependencies": {
-    "@trmf/typescript-config": "workspace:*",
-    "@types/react": "19.1.0"
+    "@trmf/typescript-config": "workspace:*"
   },
   "exports": {
     "./*": "./src/*.ts"

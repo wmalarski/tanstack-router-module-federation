@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import Sonda from "sonda/vite";
 import { defineConfig } from "vite";
-import { dependencies } from "./package.json";
+import { dependencies } from "../../package.json";
 
 export default defineConfig(() => {
   return {
@@ -23,12 +23,12 @@ export default defineConfig(() => {
         filename: "remoteEntry.js",
         name: "tags",
         remotes: {},
-        shared: {
-          react: {
-            requiredVersion: dependencies.react,
-            singleton: true,
-          },
-        },
+        shared: Object.fromEntries(
+          Object.entries(dependencies).map(([dependency, version]) => [
+            dependency,
+            { requiredVersion: version, singleton: true },
+          ]),
+        ),
       }),
       react(),
       tailwindcss(),

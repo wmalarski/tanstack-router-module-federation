@@ -1,11 +1,6 @@
 {
-  "dependencies": {
-    "@supabase/supabase-js": "^2.49.4",
-    "react": "^19.1.0"
-  },
   "devDependencies": {
-    "@trmf/typescript-config": "workspace:*",
-    "@types/react": "19.1.0"
+    "@trmf/typescript-config": "workspace:*"
   },
   "exports": {
     ".": "./src/index.tsx"

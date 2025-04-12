@@ -1,16 +1,10 @@
 {
-  "devDependencies": {
-    "@trmf/typescript-config": "workspace:*",
-    "vite": "6.2.5"
-  },
   "exports": {
     ".": "./src/index.js"
   },
   "name": "@trmf/replace-css-variables-plugin",
   "private": true,
+  "scripts": {},
   "type": "module",
-  "scripts": {
-    "check-types": "tsc --noEmit"
-  },
   "version": "0.0.0"
 }
