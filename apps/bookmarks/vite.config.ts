@@ -33,6 +33,25 @@ export default defineConfig(() => {
       react(),
       tailwindcss(),
       Sonda({ enabled: true, open: false }),
+      {
+        name: "vite:replace-css-variables",
+        transform(code, id) {
+          const shouldSkip = !/\.css$/.test(id);
+
+          if (shouldSkip) {
+            return null;
+          }
+
+          const updated = code.replace(
+            /--colors-brand-100: (.*);/g,
+            "--colors-brand-100: #112233;",
+          );
+
+          // console.log("replace", id, shouldSkip, code);
+
+          return { code: updated, map: null };
+        },
+      },
     ],
   };
 });

@@ -4,8 +4,10 @@ import { InsertBookmarkForm } from "@trmf/bookmarks-feature/insert-bookmark-form
 export const ShareBookmarkRoute = () => {
   return (
     <AppContextProvider>
-      ShareBookmarkRoute
-      <InsertBookmarkForm />
+      <div className="container">
+        ShareBookmarkRoute
+        <InsertBookmarkForm />
+      </div>
     </AppContextProvider>
   );
 };

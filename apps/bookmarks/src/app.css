@@ -1,1 +1,9 @@
 @import "tailwindcss" prefix(bookmarks);
+
+:root {
+  --colors-brand-100: #ffeeaa;
+}
+
+.container {
+  background-color: var(--colors-brand-100);
+}
