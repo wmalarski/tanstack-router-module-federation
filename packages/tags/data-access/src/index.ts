@@ -32,7 +32,7 @@ export const selectTagsQueryOptions = (args: SelectTagsQueryOptionsArgs) => {
 const invalidateTags = async (queryClient?: QueryClient) => {
   const options = selectTagsQueryOptions({ limit: 0, offset: 0 });
   const queryKey = options.queryKey.slice(0, 2);
-  await queryClient?.invalidateQueries({ queryKey, exact: false });
+  await queryClient?.invalidateQueries({ exact: false, queryKey });
 };
 
 type InsertTagMutationOptionsVariables = {

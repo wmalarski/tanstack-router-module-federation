@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.3",
     "@tanstack/react-query": "^5.72.2",
     "@tanstack/react-router": "^1.115.2",
     "@trmf/app-context-util": "workspace:*",
@@ -12,12 +11,9 @@
     "tailwindcss": "^4.1.3"
   },
   "devDependencies": {
-    "@module-federation/vite": "1.2.6",
     "@trmf/typescript-config": "workspace:*",
     "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.2",
-    "@vitejs/plugin-react": "4.3.4",
-    "vite": "6.2.5"
+    "@types/react-dom": "19.1.2"
   },
   "name": "@trmf/tags",
   "scripts": {

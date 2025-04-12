@@ -3,5 +3,7 @@ packages:
   - packages/auth/*
   - packages/shared/*
   - packages/supabase/*
+
 onlyBuiltDependencies:
+  - core-js
   - esbuild
