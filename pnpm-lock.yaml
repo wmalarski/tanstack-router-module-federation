@@ -38,6 +38,9 @@ importers:
       '@trmf/auth-util':
         specifier: workspace:*
         version: link:../../packages/auth/util
+      '@trmf/bookmarks-feature':
+        specifier: workspace:*
+        version: link:../../packages/bookmarks/feature
       '@trmf/supabase-util':
         specifier: workspace:*
         version: link:../../packages/supabase/util
@@ -157,6 +160,9 @@ importers:
       '@trmf/supabase-util':
         specifier: workspace:*
         version: link:../../packages/supabase/util
+      '@trmf/tags-feature':
+        specifier: workspace:*
+        version: link:../../packages/tags/feature
       '@trmf/ui':
         specifier: workspace:*
         version: link:../../packages/shared/ui
@@ -273,6 +279,28 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+
+  packages/bookmarks/feature:
+    dependencies:
+      '@tanstack/react-router':
+        specifier: ^1.115.2
+        version: 1.115.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trmf/bookmarks-data-access':
+        specifier: workspace:*
+        version: link:../data-access
+      '@trmf/ui':
+        specifier: workspace:*
+        version: link:../../shared/ui
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+    devDependencies:
+      '@trmf/typescript-config':
+        specifier: workspace:*
+        version: link:../../shared/typescript-config
+      '@types/react':
+        specifier: 19.1.0
+        version: 19.1.0
 
   packages/shared/app-context-util:
     dependencies:
@@ -437,15 +465,12 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.115.2
         version: 1.115.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@trmf/app-context-util':
-        specifier: workspace:*
-        version: link:../../shared/app-context-util
-      '@trmf/auth-feature':
-        specifier: workspace:*
-        version: link:../../auth/feature
       '@trmf/auth-util':
         specifier: workspace:*
         version: link:../../auth/util
+      '@trmf/tags-data-access':
+        specifier: workspace:*
+        version: link:../data-access
       '@trmf/ui':
         specifier: workspace:*
         version: link:../../shared/ui

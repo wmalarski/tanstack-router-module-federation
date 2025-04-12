@@ -1,11 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { AppContextProvider } from "@trmf/app-context-util";
 import { useUser } from "@trmf/auth-util";
 import { Button } from "@trmf/ui/components/button";
 
-export const TagsMainPage = () => {
+export const TagsList = () => {
   return (
-    <AppContextProvider>
+    <>
       <div className="host">
         <div className="card">
           <div className="title">I'm the tags app</div>
@@ -19,7 +18,7 @@ export const TagsMainPage = () => {
       </Link>
       <Button>Tags</Button>
       <UserInfo />
-    </AppContextProvider>
+    </>
   );
 };
 

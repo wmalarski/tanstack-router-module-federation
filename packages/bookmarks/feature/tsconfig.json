@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "exclude": ["node_modules", "dist"],
+  "extends": "@trmf/typescript-config/react-library.json",
+  "include": [
+    "src",
+    "../../../apps/host/src/globals.d.ts",
+    "../../supabase/util/src/vite-env.d.ts"
+  ]
+}

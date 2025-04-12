@@ -6,6 +6,7 @@
     "@trmf/app-context-util": "workspace:*",
     "@trmf/auth-util": "workspace:*",
     "@trmf/supabase-util": "workspace:*",
+    "@trmf/bookmarks-feature": "workspace:*",
     "@trmf/ui": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
