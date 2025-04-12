@@ -1,8 +1,8 @@
 import { type AnyRoute, createRoute } from "@tanstack/react-router";
 import "@trmf/ui/globals.css";
 import "./app.css";
-import { BookmarkListRoute } from "./routes/bookmark-list-route";
-import { ShareBookmarkRoute } from "./routes/share-bookmark-route";
+import { BookmarkListRoute } from "./routes/bookmark-list-route/bookmark-list-route";
+import { ShareBookmarkRoute } from "./routes/share-bookmark-route/share-bookmark-route";
 
 type GetBookmarksRouteTreeArgs<TParentRoute extends AnyRoute = AnyRoute> = {
   rootRoute: TParentRoute;

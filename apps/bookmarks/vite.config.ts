@@ -13,6 +13,13 @@ export default defineConfig(() => {
     //     allow: [".", "../shared"],
     //   },
     // },
+    test: {
+      browser: {
+        enabled: true,
+        provider: "playwright",
+        instances: [{ browser: "chromium" }],
+      },
+    },
     build: {
       target: "chrome89",
     },

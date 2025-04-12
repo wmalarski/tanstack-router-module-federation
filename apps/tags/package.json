@@ -14,7 +14,9 @@
     "build": "tsc && vite build",
     "check-types": "tsc --noEmit",
     "dev": "vite --port 4174",
-    "start": "vite preview --port 4174"
+    "start": "vite preview --port 4174",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "type": "module",
   "version": "0.0.0"
