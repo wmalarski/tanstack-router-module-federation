@@ -3,8 +3,8 @@ import {
   createRoute,
 } from "@tanstack/react-router";
 import * as v from "valibot";
-import type { BookmarksRoute } from "../../bookmarks/src/route";
-import type { TagsRoute } from "../../tags/src/route";
+import type { GetBookmarksRoute } from "../../bookmarks/src/route";
+import type { GetTagsRoute } from "../../tags/src/route";
 import { FormLayout } from "./layouts/form-layout";
 import { ProtectedLayout } from "./layouts/protected-layout";
 import type { RootRouteContext } from "./router-context";
@@ -26,18 +26,16 @@ export const getAsyncRouteTree = async () => {
   const [getBookmarksRoute, getTagsRoute] = await Promise.all([
     // @ts-ignore
     import("bookmarks/bookmarks-router").then(
-      (module) => module.getBookmarksRoute as BookmarksRoute,
+      (module) => module.getBookmarksRoute as GetBookmarksRoute,
     ),
     // @ts-ignore
     import("tags/tags-router").then(
-      (module) => module.getTagsRoute as TagsRoute,
+      (module) => module.getTagsRoute as GetTagsRoute,
     ),
   ]);
 
   const indexRoute = getBookmarksRoute({ rootRoute: protectedLayout });
   const tagsRoute = getTagsRoute({ parentRoute: protectedLayout });
-
-  console.log("routes", indexRoute, tagsRoute);
 
   const formLayout = createRoute({
     beforeLoad: guestGuard,
@@ -74,61 +72,3 @@ export const getAsyncRouteTree = async () => {
 };
 
 export type AsyncRouteTree = Awaited<ReturnType<typeof getAsyncRouteTree>>;
-
-export const getRouteTree = () => {
-  const rootRoute = createRootRouteWithContext<RootRouteContext>()({});
-
-  const protectedLayout = createRoute({
-    beforeLoad: authGuard,
-    component: ProtectedLayout,
-    getParentRoute: () => rootRoute,
-    id: "protected",
-  });
-
-  const indexRoute = createRoute({
-    getParentRoute: () => protectedLayout,
-    path: "/",
-  }).lazy(() =>
-    // @ts-ignore
-    import("bookmarks/bookmarks-router").then((module) => module.Route),
-  );
-
-  const tagsRoute = createRoute({
-    getParentRoute: () => protectedLayout,
-    path: "/tags",
-    // @ts-ignore
-  }).lazy(() => import("tags/tags-router").then((module) => module.Route));
-
-  const formLayout = createRoute({
-    beforeLoad: guestGuard,
-    component: FormLayout,
-    getParentRoute: () => rootRoute,
-    id: "form",
-  });
-
-  const signUpRoute = createRoute({
-    component: SignUpRoute,
-    getParentRoute: () => formLayout,
-    path: "/sign-up",
-  });
-
-  const signUpSuccessRoute = createRoute({
-    component: SignUpSuccessRoute,
-    getParentRoute: () => formLayout,
-    path: "/success",
-  });
-
-  const signInRoute = createRoute({
-    component: SignInRoute,
-    getParentRoute: () => formLayout,
-    path: "/sign-in",
-    validateSearch: v.object({ redirect: v.optional(v.string(), "") }),
-  });
-
-  const routeTree = rootRoute.addChildren([
-    protectedLayout.addChildren([indexRoute, tagsRoute]),
-    formLayout.addChildren([signUpRoute, signUpSuccessRoute, signInRoute]),
-  ]);
-
-  return routeTree;
-};

@@ -1,3 +1,3 @@
 import type { getBookmarksRoute } from "./router";
 
-export type BookmarksRoute = typeof getBookmarksRoute;
+export type GetBookmarksRoute = typeof getBookmarksRoute;

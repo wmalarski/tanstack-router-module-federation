@@ -141,7 +141,7 @@ const invalidateBookmarks = async (queryClient?: QueryClient) => {
     ]
       .map((options) => options.queryKey.slice(0, -1))
       .map((queryKey) =>
-        queryClient?.invalidateQueries({ queryKey, exact: false }),
+        queryClient?.invalidateQueries({ exact: false, queryKey }),
       ),
   );
 };

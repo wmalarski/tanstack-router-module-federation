@@ -35,7 +35,5 @@ export const Router = ({ routeTree }: RouterProps) => {
     [supabase, user, queryClient, resolvedRouteTree],
   );
 
-  console.log("resolvedRouteTree", resolvedRouteTree);
-
   return <RouterProvider router={router} />;
 };

@@ -8,6 +8,6 @@ const routeTree = getAsyncRouteTree();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App supabase={getSupabaseClient()} routeTree={routeTree} />
+    <App routeTree={routeTree} supabase={getSupabaseClient()} />
   </React.StrictMode>,
 );
