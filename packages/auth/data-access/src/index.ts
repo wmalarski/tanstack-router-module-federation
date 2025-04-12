@@ -8,11 +8,9 @@ import { type MutationOptions, queryOptions } from "@tanstack/react-query";
 import { getSupabaseContext } from "@trmf/supabase-util";
 
 export const getUserQueryOptions = () => {
-  const supabase = getSupabaseContext();
-
   return queryOptions({
     queryFn: async () => {
-      const response = await supabase.auth.getUser();
+      const response = await getSupabaseContext().auth.getUser();
       return response.data.user;
     },
     queryKey: ["data-access-auth", "get-user"],
@@ -75,7 +73,6 @@ export const signUpMutationOptions = ({
 
       return response.data;
     },
-    onSuccess,
   };
 };
 

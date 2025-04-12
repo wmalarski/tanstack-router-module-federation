@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { signUpMutationOptions } from "@trmf/auth-data-access";
 import {
   Card,
@@ -12,7 +12,15 @@ import type { ComponentProps } from "react";
 import { AuthFields, useAuthFields } from "./auth-fields";
 
 export const SignUpForm = () => {
-  const signUpMutation = useMutation(signUpMutationOptions());
+  const navigate = useNavigate();
+
+  const signUpMutation = useMutation(
+    signUpMutationOptions({
+      onSuccess: async () => {
+        await navigate({ to: "/sign-in" });
+      },
+    }),
+  );
 
   const form = useAuthFields({
     onSubmit: (value) => {

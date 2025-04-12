@@ -1,6 +1,5 @@
 import type { User } from "@supabase/supabase-js";
 import { createStore } from "@xstate/store";
-import { useSelector } from "@xstate/store/react";
 import { createContext, useContext } from "react";
 
 export const getUserStore = (user: User | null) => {
@@ -17,24 +16,25 @@ export const getUserStore = (user: User | null) => {
 export type UserStore = ReturnType<typeof getUserStore>;
 
 export type UserContextValue = {
-  userStore: UserStore | null;
+  user: User | null;
 };
 
-export const UserContext = createContext<UserContextValue>({ userStore: null });
+export const UserContext = createContext<UserContextValue>({ user: null });
 
 export const useUserStore = () => {
   const context = useContext(UserContext);
 
-  if (!context.userStore) {
+  if (!context) {
     throw new Error("UserContext is not defined!");
   }
 
-  return context.userStore;
+  return context;
 };
 
 export const useUserContext = () => {
   const userStore = useUserStore();
-  return useSelector(userStore, (store) => store.context.user);
+  return userStore.user;
+  // return useSelector(userStore, (store) => store.context.user);
 };
 
 export const useRequiredUserContext = () => {

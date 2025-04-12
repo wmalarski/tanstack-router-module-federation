@@ -5,7 +5,7 @@ import {
   createRouter,
   RouterProvider,
 } from "@tanstack/react-router";
-import { useUserStore } from "@trmf/auth-util";
+import { useUserContext } from "@trmf/auth-util";
 import { getSupabaseContext } from "@trmf/supabase-util";
 import "@trmf/ui/globals.css";
 import { useMemo } from "react";
@@ -88,12 +88,14 @@ export type RouterType = ReturnType<typeof getRouter>;
 
 export const Router = () => {
   const supabase = getSupabaseContext();
-  const userStore = useUserStore();
+  const user = useUserContext();
 
   const router = useMemo(
-    () => getRouter({ queryClient, supabase, userStore }),
-    [supabase, userStore],
+    () => getRouter({ queryClient, supabase, user }),
+    [supabase, user],
   );
+
+  console.log("Router", { user });
 
   return <RouterProvider router={router} />;
 };

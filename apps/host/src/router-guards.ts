@@ -7,7 +7,7 @@ type AuthGuardArgs = {
 };
 
 const getUserFromStore = (context: RootRouteContext) => {
-  return context.userStore.getSnapshot().context.user;
+  return context.user;
 };
 
 export const authGuard = ({ context, location }: AuthGuardArgs) => {
