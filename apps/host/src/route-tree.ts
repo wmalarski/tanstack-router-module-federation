@@ -3,6 +3,8 @@ import {
   createRoute,
 } from "@tanstack/react-router";
 import * as v from "valibot";
+import type { BookmarksRoute } from "../../bookmarks/src/route";
+import type { TagsRoute } from "../../tags/src/route";
 import { FormLayout } from "./layouts/form-layout";
 import { ProtectedLayout } from "./layouts/protected-layout";
 import type { RootRouteContext } from "./router-context";
@@ -10,6 +12,21 @@ import { authGuard, guestGuard } from "./router-guards";
 import { SignInRoute } from "./routes/sign-in-route";
 import { SignUpRoute } from "./routes/sign-up-route";
 import { SignUpSuccessRoute } from "./routes/sign-up-success-route";
+
+const getAsyncRouteTree = async () => {
+  const routes = await Promise.all([
+    // @ts-ignore
+    import("bookmarks/bookmarks-router").then(
+      (module) => module.getBookmarksRoute as BookmarksRoute,
+    ),
+    // @ts-ignore
+    import("tags/tags-router").then(
+      (module) => module.getBookmarksRoute as TagsRoute,
+    ),
+  ]);
+
+  console.log("routes", routes);
+};
 
 export const getRouteTree = () => {
   const rootRoute = createRootRouteWithContext<RootRouteContext>()({});

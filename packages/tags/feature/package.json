@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "@tanstack/react-router": "^1.115.2",
+    "@trmf/auth-feature": "workspace:*",
+    "@trmf/auth-util": "workspace:*",
+    "@trmf/app-context-util": "workspace:*",
+    "@trmf/ui": "workspace:*",
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@trmf/typescript-config": "workspace:*",
+    "@types/react": "19.1.0"
+  },
+  "exports": {
+    "./*": "./src/*.tsx"
+  },
+  "name": "@trmf/tags-feature",
+  "private": true,
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "version": "0.0.0"
+}

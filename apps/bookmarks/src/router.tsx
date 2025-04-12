@@ -1,7 +1,7 @@
 import {
+  type AnyRoute,
   createLazyRoute,
   createRoute,
-  type RootRoute,
 } from "@tanstack/react-router";
 import App from "./app";
 
@@ -9,19 +9,17 @@ export const Route = createLazyRoute("/protected/")({
   component: App,
 });
 
-// const todoRoute = createRoute({
-//   getParentRoute: () => Route,
-//   path: "/bookmarks/$todoId",
-// });
-
-type GetRouteArgs = {
-  rootRoute: RootRoute;
+type GetBookmarksRouteArgs<TParentRoute extends AnyRoute = AnyRoute> = {
+  rootRoute: TParentRoute;
 };
 
-export const getBookmarksRouter = ({ rootRoute }: GetRouteArgs) => {
+export const getBookmarksRoute = <TParentRoute extends AnyRoute = AnyRoute>({
+  rootRoute,
+}: GetBookmarksRouteArgs<TParentRoute>) => {
   const route = createRoute({
     getParentRoute: () => rootRoute,
-    path: "/",
+    path: "/bookmarks",
+    component: App,
   });
 
   return route;

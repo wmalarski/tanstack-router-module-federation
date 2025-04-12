@@ -1,5 +1,5 @@
 {
   "extends": "@trmf/typescript-config/app.json",
-  "include": ["src"],
+  "include": ["src", "../bookmarks/src/route.d.ts", "../tags/src/route.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
