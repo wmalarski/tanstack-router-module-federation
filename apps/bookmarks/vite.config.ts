@@ -1,5 +1,6 @@
 import { federation } from "@module-federation/vite";
 import tailwindcss from "@tailwindcss/vite";
+import { replaceCssVariables } from "@trmf/replace-css-variables-plugin";
 import react from "@vitejs/plugin-react";
 import Sonda from "sonda/vite";
 import { defineConfig } from "vite";
@@ -33,25 +34,9 @@ export default defineConfig(() => {
       react(),
       tailwindcss(),
       Sonda({ enabled: true, open: false }),
-      {
-        name: "vite:replace-css-variables",
-        transform(code, id) {
-          const shouldSkip = !/\.css$/.test(id);
-
-          if (shouldSkip) {
-            return null;
-          }
-
-          const updated = code.replace(
-            /--colors-brand-100: (.*);/g,
-            "--colors-brand-100: #112233;",
-          );
-
-          // console.log("replace", id, shouldSkip, code);
-
-          return { code: updated, map: null };
-        },
-      },
+      replaceCssVariables({
+        "--colors-brand-100": "#445566",
+      }),
     ],
   };
 });

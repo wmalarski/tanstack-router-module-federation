@@ -60,6 +60,9 @@ importers:
       '@module-federation/vite':
         specifier: 1.2.6
         version: 1.2.6(rollup@4.39.0)
+      '@trmf/replace-css-variables-plugin':
+        specifier: workspace:*
+        version: link:../../packages/shared/replace-css-variables-plugin
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../packages/shared/typescript-config
@@ -370,6 +373,15 @@ importers:
       '@types/react':
         specifier: 19.1.0
         version: 19.1.0
+
+  packages/shared/replace-css-variables-plugin:
+    devDependencies:
+      '@trmf/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      vite:
+        specifier: 6.2.5
+        version: 6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)
 
   packages/shared/typescript-config: {}
 
