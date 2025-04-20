@@ -180,8 +180,17 @@ importers:
         specifier: workspace:*
         version: link:../../shared/typescript-config
 
+  packages/auth/mocks:
+    devDependencies:
+      '@trmf/typescript-config':
+        specifier: workspace:*
+        version: link:../../shared/typescript-config
+
   packages/auth/util:
     devDependencies:
+      '@trmf/auth-mocks':
+        specifier: workspace:*
+        version: link:../mocks
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config

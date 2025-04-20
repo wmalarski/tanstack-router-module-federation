@@ -1,7 +1,7 @@
 import type { User } from "@supabase/supabase-js";
 import { randEmail, randUuid, randPastDate } from "@ngneat/falso";
 
-export const createMockUser = (): User => {
+export const createMockUser = (update: Partial<User> = {}): User => {
   return {
     app_metadata: {},
     aud: "user",
@@ -9,5 +9,6 @@ export const createMockUser = (): User => {
     id: randUuid(),
     user_metadata: {},
     email: randEmail(),
+    ...update,
   };
 };

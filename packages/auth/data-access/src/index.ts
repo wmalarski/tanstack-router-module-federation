@@ -73,6 +73,7 @@ export const signUpMutationOptions = ({
 
       return response.data;
     },
+    onSuccess,
   };
 };
 

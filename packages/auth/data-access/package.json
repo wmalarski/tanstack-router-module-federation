@@ -6,8 +6,7 @@
     "@trmf/typescript-config": "workspace:*"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./mocks": "./src/mocks.ts"
+    ".": "./src/index.ts"
   },
   "name": "@trmf/auth-data-access",
   "private": true,

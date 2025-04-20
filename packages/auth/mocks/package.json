@@ -1,12 +1,11 @@
 {
   "devDependencies": {
-    "@trmf/typescript-config": "workspace:*",
-    "@trmf/auth-mocks": "workspace:*"
+    "@trmf/typescript-config": "workspace:*"
   },
   "exports": {
-    ".": "./src/index.tsx"
+    ".": "./src/index.ts"
   },
-  "name": "@trmf/auth-util",
+  "name": "@trmf/auth-mocks",
   "private": true,
   "scripts": {
     "test": "vitest",

@@ -2,10 +2,11 @@ import { expect, test } from "vitest";
 import { render } from "vitest-browser-react";
 import { UserContext, useUser } from "./index";
 import type { User } from "@supabase/supabase-js";
+import { createMockUser } from "@trmf/auth-mocks";
 
 test("UserContext", () => {
   test("renders name", async () => {
-    const user: User = createMoc;
+    const user: User = createMockUser();
 
     const { getByText, getByRole } = render(
       <UserContext value={{ user }}>
