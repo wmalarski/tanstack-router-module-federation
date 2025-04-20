@@ -6,6 +6,7 @@
     "dev": "turbo run dev",
     "start": "turbo run start",
     "test": "turbo run test",
+    "view-report": "turbo run view-report",
     "coverage": "turbo run coverage",
     "lint": "biome lint --write ./apps ./packages",
     "format": "biome check --write ./apps ./packages && pnpm biome format --write ./apps ./packages",
