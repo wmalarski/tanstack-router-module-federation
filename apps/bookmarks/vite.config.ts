@@ -13,13 +13,6 @@ export default defineConfig(() => {
     //     allow: [".", "../shared"],
     //   },
     // },
-    test: {
-      browser: {
-        enabled: true,
-        provider: "playwright",
-        instances: [{ browser: "chromium" }],
-      },
-    },
     build: {
       target: "chrome89",
     },
@@ -45,5 +38,12 @@ export default defineConfig(() => {
         "--colors-brand-100": "#445566",
       }),
     ],
+    test: {
+      browser: {
+        enabled: true,
+        instances: [{ browser: "chromium" }],
+        provider: "playwright",
+      },
+    },
   };
 });

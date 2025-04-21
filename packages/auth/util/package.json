@@ -1,7 +1,7 @@
 {
   "devDependencies": {
-    "@trmf/typescript-config": "workspace:*",
     "@trmf/auth-mocks": "workspace:*",
+    "@trmf/typescript-config": "workspace:*",
     "@trmf/vitest-config": "workspace:*"
   },
   "exports": {
@@ -10,9 +10,9 @@
   "name": "@trmf/auth-util",
   "private": true,
   "scripts": {
-    "test": "vitest",
+    "check-types": "tsc --noEmit",
     "coverage": "vitest run --coverage",
-    "check-types": "tsc --noEmit"
+    "test": "vitest"
   },
   "version": "0.0.0"
 }

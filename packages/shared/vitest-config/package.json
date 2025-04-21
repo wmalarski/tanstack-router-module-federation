@@ -1,10 +1,19 @@
 {
-  "name": "@trmf/vitest-config",
-  "type": "module",
+  "devDependencies": {
+    "@trmf/typescript-config": "workspace:*",
+    "@types/node": "^22.14.1",
+    "@vitest/coverage-istanbul": "^3.1.2",
+    "@vitest/ui": "3.1.2",
+    "glob": "^11.0.1",
+    "jsdom": "^26.1.0",
+    "nyc": "^17.1.0",
+    "vitest": "^3.1.2"
+  },
   "exports": {
     "./base": "./dist/configs/base-config.js",
     "./ui": "./dist/configs/ui-config.js"
   },
+  "name": "@trmf/vitest-config",
   "scripts": {
     "build": "tsc",
     "collect-json-reports": "node dist/scripts/collect-json-outputs.js",
@@ -12,14 +21,5 @@
     "report": "nyc report -t coverage/merged --report-dir coverage/report --reporter=html --exclude-after-remap false",
     "view-report": "open coverage/report/index.html"
   },
-  "devDependencies": {
-    "@types/node": "^22.14.1",
-    "@trmf/typescript-config": "workspace:*",
-    "@vitest/coverage-istanbul": "^3.1.2",
-    "@vitest/ui": "3.1.2",
-    "glob": "^11.0.1",
-    "jsdom": "^26.1.0",
-    "nyc": "^17.1.0",
-    "vitest": "^3.1.2"
-  }
+  "type": "module"
 }

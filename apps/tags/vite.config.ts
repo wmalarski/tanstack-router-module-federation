@@ -34,5 +34,12 @@ export default defineConfig(() => {
       tailwindcss(),
       Sonda({ enabled: true, open: false }),
     ],
+    test: {
+      browser: {
+        enabled: true,
+        instances: [{ browser: "chromium" }],
+        provider: "playwright",
+      },
+    },
   };
 });

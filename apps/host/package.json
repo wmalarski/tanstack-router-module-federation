@@ -15,10 +15,10 @@
   "scripts": {
     "build": "tsc && vite build",
     "check-types": "tsc --noEmit",
+    "coverage": "vitest run --coverage",
     "dev": "vite --port 4173",
     "start": "vite preview --port 4173",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "test": "vitest"
   },
   "type": "module",
   "version": "0.0.0"
