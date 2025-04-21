@@ -34,6 +34,7 @@
     "vitest": "^3.1.2",
     "vitest-browser-react": "^0.1.1",
     "@vitejs/plugin-react": "4.4.1",
+    "@vitest/coverage-istanbul": "^3.1.2",
     "@types/react-dom": "19.1.2",
     "@ngneat/falso": "^7.3.0",
     "tailwindcss": "^4.1.4",

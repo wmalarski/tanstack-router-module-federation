@@ -54,6 +54,9 @@ importers:
       '@vitest/browser':
         specifier: ^3.1.2
         version: 3.1.2(playwright@1.52.0)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2))(vitest@3.1.2)
+      '@vitest/coverage-istanbul':
+        specifier: ^3.1.2
+        version: 3.1.2(vitest@3.1.2)
       playwright:
         specifier: ^1.52.0
         version: 1.52.0
@@ -350,9 +353,6 @@ importers:
       '@types/node':
         specifier: ^22.14.1
         version: 22.14.1
-      '@vitest/coverage-istanbul':
-        specifier: ^3.1.2
-        version: 3.1.2(vitest@3.1.2)
       '@vitest/ui':
         specifier: 3.1.2
         version: 3.1.2(vitest@3.1.2)
@@ -365,9 +365,6 @@ importers:
       nyc:
         specifier: ^17.1.0
         version: 17.1.0
-      vitest:
-        specifier: ^3.1.2
-        version: 3.1.2(@types/node@22.14.1)(@vitest/browser@3.1.2)(@vitest/ui@3.1.2)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.29.2)
 
   packages/supabase/util:
     devDependencies:
