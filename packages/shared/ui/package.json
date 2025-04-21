@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@trmf/typescript-config": "workspace:*",
+    "@trmf/vitest-config": "workspace:*",
     "@types/node": "^22.14.1",
     "tailwindcss": "^4.1.4"
   },

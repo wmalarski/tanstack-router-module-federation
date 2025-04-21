@@ -3,7 +3,8 @@
     "@trmf/supabase-util": "workspace:*"
   },
   "devDependencies": {
-    "@trmf/typescript-config": "workspace:*"
+    "@trmf/typescript-config": "workspace:*",
+    "@trmf/vitest-config": "workspace:*"
   },
   "exports": {
     ".": "./src/index.ts"

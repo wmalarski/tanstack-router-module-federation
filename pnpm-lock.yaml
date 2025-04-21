@@ -103,6 +103,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../packages/shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../packages/shared/vitest-config
 
   apps/host:
     dependencies:
@@ -128,6 +131,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../packages/shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../packages/shared/vitest-config
 
   apps/tags:
     dependencies:
@@ -150,6 +156,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../packages/shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../packages/shared/vitest-config
 
   packages/auth/data-access:
     dependencies:
@@ -160,6 +169,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
   packages/auth/feature:
     dependencies:
@@ -179,12 +191,18 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
   packages/auth/mocks:
     devDependencies:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
   packages/auth/util:
     devDependencies:
@@ -194,6 +212,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
   packages/bookmarks/data-access:
     dependencies:
@@ -204,6 +225,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
   packages/bookmarks/feature:
     dependencies:
@@ -217,6 +241,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
   packages/shared/app-context-util:
     dependencies:
@@ -233,12 +260,18 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../vitest-config
 
   packages/shared/hooks-util:
     devDependencies:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../vitest-config
 
   packages/shared/layout-feature:
     dependencies:
@@ -255,6 +288,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../vitest-config
 
   packages/shared/replace-css-variables-plugin: {}
 
@@ -296,6 +332,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../vitest-config
       '@types/node':
         specifier: ^22.14.1
         version: 22.14.1
@@ -335,6 +374,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
   packages/tags/data-access:
     dependencies:
@@ -345,6 +387,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
   packages/tags/feature:
     dependencies:
@@ -361,6 +406,9 @@ importers:
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../shared/typescript-config
+      '@trmf/vitest-config':
+        specifier: workspace:*
+        version: link:../../shared/vitest-config
 
 packages:
 

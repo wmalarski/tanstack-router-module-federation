@@ -1,7 +1,8 @@
 {
   "devDependencies": {
     "@trmf/typescript-config": "workspace:*",
-    "@trmf/auth-mocks": "workspace:*"
+    "@trmf/auth-mocks": "workspace:*",
+    "@trmf/vitest-config": "workspace:*"
   },
   "exports": {
     ".": "./src/index.tsx"
