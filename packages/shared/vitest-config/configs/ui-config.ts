@@ -6,6 +6,11 @@ export const uiConfig = mergeConfig(
   defineProject({
     test: {
       environment: "jsdom",
+      browser: {
+        enabled: true,
+        // instances: [{ browser: "chromium" }],
+        // provider: "playwright",
+      },
     },
   }),
 );

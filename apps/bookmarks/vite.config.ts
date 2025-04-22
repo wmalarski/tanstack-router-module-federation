@@ -1,6 +1,7 @@
 import { federation } from "@module-federation/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { replaceCssVariables } from "@trmf/replace-css-variables-plugin";
+import { uiConfig } from "@trmf/vitest-config/ui";
 import react from "@vitejs/plugin-react";
 import Sonda from "sonda/vite";
 import { defineConfig } from "vite";
@@ -38,12 +39,13 @@ export default defineConfig(() => {
         "--colors-brand-100": "#445566",
       }),
     ],
-    test: {
-      browser: {
-        enabled: true,
-        instances: [{ browser: "chromium" }],
-        provider: "playwright",
-      },
-    },
+    test: uiConfig.test,
+    // test: {
+    //   browser: {
+    //     enabled: true,
+    //     instances: [{ browser: "chromium" }],
+    //     provider: "playwright",
+    //   },
+    // },
   };
 });

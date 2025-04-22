@@ -1,5 +1,6 @@
 import { federation } from "@module-federation/vite";
 import tailwindcss from "@tailwindcss/vite";
+import { uiConfig } from "@trmf/vitest-config/ui";
 import react from "@vitejs/plugin-react";
 import Sonda from "sonda/vite";
 import { defineConfig } from "vite";
@@ -34,12 +35,13 @@ export default defineConfig(() => {
       tailwindcss(),
       Sonda({ enabled: true, open: false }),
     ],
-    test: {
-      browser: {
-        enabled: true,
-        instances: [{ browser: "chromium" }],
-        provider: "playwright",
-      },
-    },
+    test: uiConfig.test,
+    // test: {
+    //   browser: {
+    //     enabled: true,
+    //     instances: [{ browser: "chromium" }],
+    //     provider: "playwright",
+    //   },
+    // },
   };
 });

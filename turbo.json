@@ -25,6 +25,10 @@
       "dependsOn": ["transit", "@trmf/vitest-config#build"],
       "outputs": ["coverage.json"]
     },
+    "coverage": {
+      "dependsOn": ["transit", "@trmf/vitest-config#build"],
+      "outputs": ["coverage.json"]
+    },
     "transit": {
       "dependsOn": ["^transit"]
     }

@@ -1,3 +1,3 @@
-import { baseConfig } from "@trmf/vitest-config/base";
+import { uiConfig } from "@trmf/vitest-config/ui";
 
-export default baseConfig;
+export default uiConfig;
