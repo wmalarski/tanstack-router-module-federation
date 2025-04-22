@@ -1,10 +1,15 @@
 {
+  "devDependencies": {
+    "@trmf/typescript-config": "workspace:*"
+  },
   "exports": {
-    ".": "./src/index.js"
+    ".": "./dist/index.js"
   },
   "name": "@trmf/replace-css-variables-plugin",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "build": "tsc"
+  },
   "type": "module",
   "version": "0.0.0"
 }

@@ -5,12 +5,12 @@ export const uiConfig = mergeConfig(
   baseConfig,
   defineProject({
     test: {
-      environment: "jsdom",
       browser: {
         enabled: true,
         // instances: [{ browser: "chromium" }],
         // provider: "playwright",
       },
+      environment: "jsdom",
     },
   }),
 );

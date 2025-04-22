@@ -1,4 +1,8 @@
-export const replaceCssVariables = (variables) => {
+import type { Plugin } from "vite";
+
+export const replaceCssVariables = (
+  variables: Record<string, string>,
+): Plugin => {
   return {
     name: "vite:replace-lodash",
     transform(code, id) {

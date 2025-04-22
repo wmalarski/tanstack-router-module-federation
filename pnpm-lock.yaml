@@ -295,7 +295,11 @@ importers:
         specifier: workspace:*
         version: link:../vitest-config
 
-  packages/shared/replace-css-variables-plugin: {}
+  packages/shared/replace-css-variables-plugin:
+    devDependencies:
+      '@trmf/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/shared/typescript-config: {}
 
