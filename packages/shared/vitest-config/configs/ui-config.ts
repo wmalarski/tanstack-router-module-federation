@@ -7,8 +7,8 @@ export const uiConfig = mergeConfig(
     test: {
       browser: {
         enabled: true,
-        // instances: [{ browser: "chromium" }],
-        // provider: "playwright",
+        instances: [{ browser: "chromium" }],
+        provider: "playwright",
       },
       environment: "jsdom",
     },

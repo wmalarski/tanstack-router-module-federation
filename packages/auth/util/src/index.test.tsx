@@ -1,10 +1,10 @@
 import type { User } from "@supabase/supabase-js";
 import { createMockUser } from "@trmf/auth-mocks";
-import { expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import { render } from "vitest-browser-react";
 import { UserContext, useUser } from "./index";
 
-test("UserContext", () => {
+describe("UserContext", () => {
   test("renders name", async () => {
     const user: User = createMockUser();
 
