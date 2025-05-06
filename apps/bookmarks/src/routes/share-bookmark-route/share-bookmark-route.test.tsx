@@ -1,14 +1,16 @@
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, it } from "vitest";
 import { render } from "vitest-browser-react";
 import { ShareBookmarkRoute } from "./share-bookmark-route";
+import { TestWrapper } from "@trmf/tests-util/test-wrapper";
 
 describe("ShareBookmarkRoute", () => {
   it("renders", async () => {
-    const { getByText, getByRole } = render(<ShareBookmarkRoute />);
+    const { baseElement } = render(
+      <TestWrapper>
+        <ShareBookmarkRoute />
+      </TestWrapper>,
+    );
 
-    await expect.element(getByText("Hello Vitest x1!")).toBeInTheDocument();
-    await getByRole("button", { name: "Increment " }).click();
-
-    await expect.element(getByText("Hello Vitest x2!")).toBeInTheDocument();
+    expect(baseElement).toMatchSnapshot();
   });
 });

@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "@trmf/typescript-config": "workspace:*"
+  },
+  "exports": {
+    "./*": "./src/*.tsx"
+  },
+  "name": "@trmf/tests-util",
+  "private": true,
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "version": "0.0.0"
+}

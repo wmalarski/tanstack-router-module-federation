@@ -106,6 +106,9 @@ importers:
       '@trmf/replace-css-variables-plugin':
         specifier: workspace:*
         version: link:../../packages/shared/replace-css-variables-plugin
+      '@trmf/tests-util':
+        specifier: workspace:*
+        version: link:../../packages/shared/tests-util
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../packages/shared/typescript-config
@@ -134,6 +137,9 @@ importers:
         specifier: workspace:*
         version: link:../../packages/shared/ui
     devDependencies:
+      '@trmf/tests-util':
+        specifier: workspace:*
+        version: link:../../packages/shared/tests-util
       '@trmf/typescript-config':
         specifier: workspace:*
         version: link:../../packages/shared/typescript-config
@@ -299,6 +305,12 @@ importers:
         version: link:../vitest-config
 
   packages/shared/replace-css-variables-plugin:
+    devDependencies:
+      '@trmf/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+
+  packages/shared/tests-util:
     devDependencies:
       '@trmf/typescript-config':
         specifier: workspace:*

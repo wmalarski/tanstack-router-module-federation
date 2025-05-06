@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@trmf/replace-css-variables-plugin": "workspace:*",
+    "@trmf/tests-util": "workspace:*",
     "@trmf/typescript-config": "workspace:*",
     "@trmf/vitest-config": "workspace:*"
   },
