@@ -7,45 +7,45 @@ import Sonda from "sonda/vite";
 import { defineConfig } from "vite";
 import { dependencies } from "../../package.json";
 
-export default defineConfig(() => {
-  return {
-    // server: {
-    //   fs: {
-    //     allow: [".", "../shared"],
-    //   },
-    // },
-    build: {
-      target: "chrome89",
-    },
-    plugins: [
-      federation({
-        exposes: {
-          "./bookmarks-route-tree": "./src/route-tree.ts",
-        },
-        filename: "remoteEntry.js",
-        name: "bookmarks",
-        remotes: {},
-        shared: Object.fromEntries(
-          Object.entries(dependencies).map(([dependency, version]) => [
-            dependency,
-            { requiredVersion: version, singleton: true },
-          ]),
-        ),
-      }),
-      react(),
-      tailwindcss(),
-      Sonda({ enabled: true, open: false }),
-      replaceCssVariables({
-        "--colors-brand-100": "#445566",
-      }),
-    ],
-    test: uiConfig.test,
-    // test: {
-    //   browser: {
-    //     enabled: true,
-    //     instances: [{ browser: "chromium" }],
-    //     provider: "playwright",
-    //   },
-    // },
-  };
-});
+export default defineConfig(({ mode }) => ({
+  // server: {
+  //   fs: {
+  //     allow: [".", "../shared"],
+  //   },
+  // },
+  build: {
+    target: "chrome89",
+  },
+  plugins: [
+    mode !== "test"
+      ? federation({
+          exposes: {
+            "./bookmarks-route-tree": "./src/route-tree.ts",
+          },
+          filename: "remoteEntry.js",
+          name: "bookmarks",
+          remotes: {},
+          shared: Object.fromEntries(
+            Object.entries(dependencies).map(([dependency, version]) => [
+              dependency,
+              { requiredVersion: version, singleton: true },
+            ]),
+          ),
+        })
+      : undefined,
+    react(),
+    tailwindcss(),
+    Sonda({ enabled: true, open: false }),
+    replaceCssVariables({
+      "--colors-brand-100": "#445566",
+    }),
+  ],
+  test: uiConfig.test,
+  // test: {
+  //   browser: {
+  //     enabled: true,
+  //     instances: [{ browser: "chromium" }],
+  //     provider: "playwright",
+  //   },
+  // },
+}));

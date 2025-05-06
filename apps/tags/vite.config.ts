@@ -6,7 +6,7 @@ import Sonda from "sonda/vite";
 import { defineConfig } from "vite";
 import { dependencies } from "../../package.json";
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   return {
     // server: {
     //   fs: {
@@ -17,20 +17,22 @@ export default defineConfig(() => {
       target: "chrome89",
     },
     plugins: [
-      federation({
-        exposes: {
-          "./tags-route-tree": "./src/route-tree.ts",
-        },
-        filename: "remoteEntry.js",
-        name: "tags",
-        remotes: {},
-        shared: Object.fromEntries(
-          Object.entries(dependencies).map(([dependency, version]) => [
-            dependency,
-            { requiredVersion: version, singleton: true },
-          ]),
-        ),
-      }),
+      mode !== "test"
+        ? federation({
+            exposes: {
+              "./tags-route-tree": "./src/route-tree.ts",
+            },
+            filename: "remoteEntry.js",
+            name: "tags",
+            remotes: {},
+            shared: Object.fromEntries(
+              Object.entries(dependencies).map(([dependency, version]) => [
+                dependency,
+                { requiredVersion: version, singleton: true },
+              ]),
+            ),
+          })
+        : undefined,
       react(),
       tailwindcss(),
       Sonda({ enabled: true, open: false }),

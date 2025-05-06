@@ -1,8 +1,8 @@
-import { expect, it, test } from "vitest";
+import { describe, expect, it, test } from "vitest";
 import { render } from "vitest-browser-react";
 import { ShareBookmarkRoute } from "./share-bookmark-route";
 
-test("ShareBookmarkRoute", () => {
+describe("ShareBookmarkRoute", () => {
   it("renders", async () => {
     const { getByText, getByRole } = render(<ShareBookmarkRoute />);
 

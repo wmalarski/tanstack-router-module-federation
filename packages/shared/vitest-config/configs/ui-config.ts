@@ -7,6 +7,7 @@ export const uiConfig = mergeConfig(
     test: {
       browser: {
         enabled: true,
+        headless: true,
         instances: [{ browser: "chromium" }],
         provider: "playwright",
       },
