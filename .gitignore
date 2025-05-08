@@ -43,3 +43,6 @@ coverage.json
 
 # Module Federation
 .__mf__temp
+
+# Storybook
+storybook-static

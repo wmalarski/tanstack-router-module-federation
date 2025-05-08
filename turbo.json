@@ -1,21 +1,24 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!**/*.stories.{tsx,jsx,mdx}"],
+      "outputs": ["dist", "storybook-static/**"]
     },
     "check-types": {
       "dependsOn": ["^check-types"]
     },
+    "coverage": {
+      "dependsOn": ["transit", "@trmf/vitest-config#build"],
+      "outputs": ["coverage.json"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
     },
     "start": {
       "cache": false,
@@ -25,12 +28,9 @@
       "dependsOn": ["transit", "@trmf/vitest-config#build"],
       "outputs": ["coverage.json"]
     },
-    "coverage": {
-      "dependsOn": ["transit", "@trmf/vitest-config#build"],
-      "outputs": ["coverage.json"]
-    },
     "transit": {
       "dependsOn": ["^transit"]
     }
-  }
+  },
+  "ui": "tui"
 }
