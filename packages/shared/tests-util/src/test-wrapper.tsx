@@ -1,4 +1,5 @@
 import {
+  createMemoryHistory,
   createRootRoute,
   createRoute,
   createRouter,
@@ -6,7 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { type PropsWithChildren, useMemo } from "react";
 
-const getRouter = (children: PropsWithChildren["children"]) => {
+const getTestRouter = (children: PropsWithChildren["children"]) => {
   const rootRoute = createRootRoute({});
 
   const indexRoute = createRoute({
@@ -17,8 +18,13 @@ const getRouter = (children: PropsWithChildren["children"]) => {
 
   const routeTree = rootRoute.addChildren([indexRoute]);
 
+  const memoryHistory = createMemoryHistory({
+    initialEntries: ["/"],
+  });
+
   const router = createRouter({
     defaultPreload: "intent",
+    history: memoryHistory,
     routeTree,
     scrollRestoration: true,
   });
@@ -27,7 +33,7 @@ const getRouter = (children: PropsWithChildren["children"]) => {
 };
 
 export const TestWrapper = ({ children }: PropsWithChildren) => {
-  const router = useMemo(() => getRouter(children), [children]);
+  const router = useMemo(() => getTestRouter(children), [children]);
 
   return <RouterProvider router={router} />;
 };
