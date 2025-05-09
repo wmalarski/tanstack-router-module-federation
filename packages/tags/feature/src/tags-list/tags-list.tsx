@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useUser } from "@trmf/auth-util";
 import { Button } from "@trmf/ui/components/button";
+import { InsertTagDialog } from "../forms/insert-tag-dialog";
 
 export const TagsList = () => {
   return (
@@ -17,6 +18,7 @@ export const TagsList = () => {
         About
       </Link>
       <Button>Tags</Button>
+      <InsertTagDialog />
       <UserInfo />
     </>
   );

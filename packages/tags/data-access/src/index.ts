@@ -35,11 +35,17 @@ const invalidateTags = async (queryClient?: QueryClient) => {
   await queryClient?.invalidateQueries({ exact: false, queryKey });
 };
 
+type InsertTagMutationOptionsArgs = {
+  onSuccess: () => void;
+};
+
 type InsertTagMutationOptionsVariables = {
   name: string;
 };
 
-export const insertTagMutationOptions = (): MutationOptions<
+export const insertTagMutationOptions = ({
+  onSuccess,
+}: InsertTagMutationOptionsArgs): MutationOptions<
   null,
   Error,
   InsertTagMutationOptionsVariables
@@ -54,6 +60,7 @@ export const insertTagMutationOptions = (): MutationOptions<
     },
     onSuccess: () => {
       invalidateTags(queryClient);
+      onSuccess();
     },
   };
 };
