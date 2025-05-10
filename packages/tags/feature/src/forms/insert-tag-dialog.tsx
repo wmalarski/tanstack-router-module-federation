@@ -20,7 +20,9 @@ export const InsertTagDialog = () => {
 
   const insertTagMutation = useMutation(
     insertTagMutationOptions({
-      onSuccess: () => {},
+      onSuccess: () => {
+        setIsOpen(false);
+      },
     }),
   );
 
@@ -52,7 +54,6 @@ export const InsertTagDialog = () => {
         </form>
         <DialogFooter>
           <Button
-            color="primary"
             disabled={insertTagMutation.isPending}
             form={formId}
             type="submit"

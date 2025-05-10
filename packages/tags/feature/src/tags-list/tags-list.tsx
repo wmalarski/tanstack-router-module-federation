@@ -1,31 +1,32 @@
-import { Link } from "@tanstack/react-router";
-import { useUser } from "@trmf/auth-util";
-import { Button } from "@trmf/ui/components/button";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { selectTagsQueryOptions } from "@trmf/tags-data-access";
+import { Suspense } from "react";
 import { InsertTagDialog } from "../forms/insert-tag-dialog";
+import { TagsListItem } from "./tag-list-item";
 
 export const TagsList = () => {
   return (
     <>
-      <div className="host">
-        <div className="card">
-          <div className="title">I'm the tags app</div>
-        </div>
-      </div>
-      <Link className="tags:[&.active]:font-bold" to="/">
-        Home
-      </Link>{" "}
-      <Link className="tags:[&.active]:font-bold" to="/tags">
-        About
-      </Link>
-      <Button>Tags</Button>
       <InsertTagDialog />
-      <UserInfo />
+      <Suspense>
+        <TagsListQuery />
+      </Suspense>
     </>
   );
 };
 
-const UserInfo = () => {
-  const user = useUser();
+const TagsListQuery = () => {
+  const selectTagsQuery = useSuspenseQuery(
+    selectTagsQueryOptions({ limit: 50, offset: 0 }),
+  );
 
-  return <pre>{JSON.stringify(user, null, 2)}</pre>;
+  return (
+    <ul className="flex flex-col gap-2">
+      {selectTagsQuery.data.map((tag) => (
+        <li key={tag.id}>
+          <TagsListItem tag={tag} />
+        </li>
+      ))}
+    </ul>
+  );
 };

@@ -4,7 +4,11 @@ import {
   QueryClientContext,
   queryOptions,
 } from "@tanstack/react-query";
-import { getPostgrestData, getSupabaseContext } from "@trmf/supabase-util";
+import {
+  getPostgrestData,
+  getSupabaseContext,
+  type SupabaseTypedClient,
+} from "@trmf/supabase-util";
 import { use } from "react";
 
 type SelectTagsQueryOptionsArgs = {
@@ -12,22 +16,33 @@ type SelectTagsQueryOptionsArgs = {
   limit: number;
 };
 
+type SelectTagsFromDbArgs = SelectTagsQueryOptionsArgs & {
+  supabase: SupabaseTypedClient;
+};
+
+const selectTagsFromDb = async ({
+  limit,
+  offset,
+  supabase,
+}: SelectTagsFromDbArgs) => {
+  const response = await supabase
+    .from("tags")
+    .select("*", { count: "estimated" })
+    .range(offset, offset + limit)
+    .order("created_at");
+  return getPostgrestData(response);
+};
+
 export const selectTagsQueryOptions = (args: SelectTagsQueryOptionsArgs) => {
   const supabase = getSupabaseContext();
 
   return queryOptions({
-    queryFn: async () => {
-      const { limit, offset } = args;
-      const response = await supabase
-        .from("tags")
-        .select("*", { count: "estimated" })
-        .range(offset, offset + limit)
-        .order("created_at");
-      return getPostgrestData(response);
-    },
+    queryFn: async () => selectTagsFromDb({ ...args, supabase }),
     queryKey: ["tags-data-access", "select-tags", args],
   });
 };
+
+export type TagModel = Awaited<ReturnType<typeof selectTagsFromDb>>[0];
 
 const invalidateTags = async (queryClient?: QueryClient) => {
   const options = selectTagsQueryOptions({ limit: 0, offset: 0 });
@@ -58,9 +73,9 @@ export const insertTagMutationOptions = ({
       const response = await supabase.from("tags").insert(args);
       return getPostgrestData(response);
     },
-    onSuccess: () => {
-      invalidateTags(queryClient);
+    onSuccess: async () => {
       onSuccess();
+      await invalidateTags(queryClient);
     },
   };
 };
@@ -85,10 +100,14 @@ export const deleteTagMutationOptions = (): MutationOptions<
         .eq("id", args.tagId);
       return getPostgrestData(response);
     },
-    onSuccess: () => {
-      invalidateTags(queryClient);
+    onSuccess: async () => {
+      await invalidateTags(queryClient);
     },
   };
+};
+
+type UpdateTagMutationOptionsArgs = {
+  onSuccess: () => void;
 };
 
 type UpdateTagMutationOptionsVariables = {
@@ -96,7 +115,9 @@ type UpdateTagMutationOptionsVariables = {
   name: string;
 };
 
-export const updateTagMutationOptions = (): MutationOptions<
+export const updateTagMutationOptions = ({
+  onSuccess,
+}: UpdateTagMutationOptionsArgs): MutationOptions<
   null,
   Error,
   UpdateTagMutationOptionsVariables
@@ -112,8 +133,9 @@ export const updateTagMutationOptions = (): MutationOptions<
         .eq("id", args.tagId);
       return getPostgrestData(response);
     },
-    onSuccess: () => {
-      invalidateTags(queryClient);
+    onSuccess: async () => {
+      onSuccess();
+      await invalidateTags(queryClient);
     },
   };
 };

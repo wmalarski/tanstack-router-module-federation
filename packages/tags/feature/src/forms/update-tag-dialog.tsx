@@ -1,74 +1,76 @@
-import { useSubmission } from "@solidjs/router";
-import { type Component, createMemo } from "solid-js";
-import { useI18n } from "~/modules/common/contexts/i18n";
-import { useActionOnSubmit } from "~/modules/common/utils/use-action-on-submit";
-import { Button } from "~/ui/button/button";
+import { useMutation } from "@tanstack/react-query";
 import {
-  closeDialog,
+  type TagModel,
+  updateTagMutationOptions,
+} from "@trmf/tags-data-access";
+import { Button } from "@trmf/ui/components/button";
+import {
   Dialog,
-  DialogActions,
-  DialogBackdrop,
-  DialogBox,
-  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "~/ui/dialog/dialog";
-import { PencilIcon } from "~/ui/icons/pencil-icon";
-import { type TagModel, updateTagServerAction } from "../server";
-import { TagFields } from "./tag-fields";
+} from "@trmf/ui/components/dialog";
+import { PencilIcon } from "@trmf/ui/components/icons";
+import { type ComponentProps, useId, useState } from "react";
+import { TagFields, useTagFields } from "./tag-fields";
 
 type UpdateTagDialogProps = {
   tag: TagModel;
 };
 
-export const UpdateTagDialog: Component<UpdateTagDialogProps> = (props) => {
-  const { t } = useI18n();
+export const UpdateTagDialog = ({ tag }: UpdateTagDialogProps) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const dialogId = createMemo(() => `update-dialog-${props.tag.id}`);
-  const formId = createMemo(() => `update-form-${props.tag.id}`);
+  const formId = useId();
 
-  const submission = useSubmission(
-    updateTagServerAction,
-    ([form]) => form.get("tagId") === String(props.tag.id),
+  const updateTagMutation = useMutation(
+    updateTagMutationOptions({
+      onSuccess: () => {
+        setIsOpen(false);
+      },
+    }),
   );
 
-  const onSubmit = useActionOnSubmit({
-    action: updateTagServerAction,
-    onSuccess: () => closeDialog(dialogId()),
+  const form = useTagFields({
+    onSubmit: (value) => {
+      updateTagMutation.mutate({ ...value, tagId: tag.id });
+    },
   });
+
+  const onSubmit: ComponentProps<"form">["onSubmit"] = async (event) => {
+    event.preventDefault();
+    await form.handleSubmit();
+  };
 
   return (
     <>
-      <DialogTrigger color="secondary" for={dialogId()} size="sm">
-        <PencilIcon class="size-4" />
-        {t("common.update")}
-      </DialogTrigger>
-      <Dialog id={dialogId()}>
-        <DialogBox>
-          <DialogTitle>{t("common.update")}</DialogTitle>
-          <form id={formId()} onSubmit={onSubmit}>
-            <input name="tagId" type="hidden" value={props.tag.id} />
-            <TagFields
-              pending={submission.pending}
-              result={
-                submission.result?.success ? undefined : submission.result
-              }
-            />
+      <Dialog onOpenChange={setIsOpen} open={isOpen}>
+        <DialogTrigger asChild>
+          <Button>
+            <PencilIcon className="size-4" />
+            Update
+          </Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Update tag</DialogTitle>
+          </DialogHeader>
+          <form id={formId} onSubmit={onSubmit}>
+            <input name="tagId" type="hidden" value={tag.id} />
+            <TagFields form={form} pending={updateTagMutation.isPending} />
           </form>
-          <DialogActions>
-            <DialogClose />
+          <DialogFooter>
             <Button
-              color="primary"
-              disabled={submission.pending}
-              form={formId()}
-              isLoading={submission.pending}
+              disabled={updateTagMutation.isPending}
+              form={formId}
               type="submit"
             >
-              {t("common.save")}
+              Save
             </Button>
-          </DialogActions>
-        </DialogBox>
-        <DialogBackdrop />
+          </DialogFooter>
+        </DialogContent>
       </Dialog>
     </>
   );
