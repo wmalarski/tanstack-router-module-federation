@@ -29,8 +29,8 @@ type AuthFieldsProps = {
 
 export const AuthFields = ({ form }: AuthFieldsProps) => {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="grid gap-2">
+    <div className="auth:flex auth:flex-col auth:gap-6">
+      <div className="auth:grid auth:gap-2">
         <Label htmlFor="email">Email</Label>
         <form.AppField name="email">
           {(field) => (
@@ -46,7 +46,7 @@ export const AuthFields = ({ form }: AuthFieldsProps) => {
           )}
         </form.AppField>
       </div>
-      <div className="grid gap-2">
+      <div className="auth:grid auth:gap-2">
         <Label htmlFor="password">Password</Label>
         <form.AppField name="password">
           {(field) => (

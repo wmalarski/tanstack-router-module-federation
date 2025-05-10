@@ -41,7 +41,7 @@ export const InsertTagDialog = () => {
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild>
         <Button>
-          <PlusIcon className="size-4" />
+          <PlusIcon className="tags:size-4" />
           Add Tag
         </Button>
       </DialogTrigger>

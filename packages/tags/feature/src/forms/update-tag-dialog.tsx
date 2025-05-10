@@ -50,7 +50,7 @@ export const UpdateTagDialog = ({ tag }: UpdateTagDialogProps) => {
       <Dialog onOpenChange={setIsOpen} open={isOpen}>
         <DialogTrigger asChild>
           <Button>
-            <PencilIcon className="size-4" />
+            <PencilIcon className="tags:size-4" />
             Update
           </Button>
         </DialogTrigger>
@@ -59,7 +59,6 @@ export const UpdateTagDialog = ({ tag }: UpdateTagDialogProps) => {
             <DialogTitle>Update tag</DialogTitle>
           </DialogHeader>
           <form id={formId} onSubmit={onSubmit}>
-            <input name="tagId" type="hidden" value={tag.id} />
             <TagFields form={form} pending={updateTagMutation.isPending} />
           </form>
           <DialogFooter>

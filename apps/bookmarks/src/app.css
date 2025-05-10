@@ -1,4 +1,4 @@
-@import "tailwindcss" prefix(bookmarks);
+@import "tailwindcss" prefix(appbookmarks);
 
 :root {
   --colors-brand-100: #ffeeaa;

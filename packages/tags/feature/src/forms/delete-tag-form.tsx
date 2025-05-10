@@ -32,7 +32,7 @@ export const DeleteTagForm = ({ tag }: DeleteTagFormProps) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button>
-          <TrashIcon className="size-4" />
+          <TrashIcon className="tags:size-4" />
           Delete
         </Button>
       </AlertDialogTrigger>

@@ -1,0 +1,2 @@
+@import "tailwindcss" prefix(auth);
+@source "./**/*.{ts,tsx}";

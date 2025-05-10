@@ -6,25 +6,25 @@ export const TopNavbar = () => {
   const user = useUser();
 
   return (
-    <nav className="flex flex-row gap-2 p-2">
-      <ul>
+    <nav className="layout:py-4">
+      <ul className="layout:mx-auto layout:flex layout:w-full layout:max-w-xl layout:flex-row layout:items-center layout:gap-2">
         <li>
-          <Link className="host:[&.active]:font-bold" to="/">
+          <Link className="layout:[&.active]:font-bold" to="/">
             Home
           </Link>
         </li>
         <li>
-          <Link className="host:[&.active]:font-bold" to="/tags">
+          <Link className="layout:[&.active]:font-bold" to="/tags">
             About
           </Link>
         </li>
         <li>
-          <Link className="host:[&.active]:font-bold" to="/share">
+          <Link className="layout:[&.active]:font-bold" to="/share">
             Share
           </Link>
         </li>
         {user ? (
-          <li>
+          <li className="layout:flex layout:w-full layout:grow layout:justify-end">
             <SignOutButton />
           </li>
         ) : null}

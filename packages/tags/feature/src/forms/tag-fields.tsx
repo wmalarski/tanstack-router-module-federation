@@ -30,8 +30,8 @@ type TagFieldsProps = {
 
 export const TagFields = ({ pending, form }: TagFieldsProps) => {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="grid gap-2">
+    <div className="tags:flex tags:flex-col tags:gap-6">
+      <div className="tags:grid tags:gap-2">
         <Label htmlFor="name">Name</Label>
         <form.AppField name="name">
           {(field) => (

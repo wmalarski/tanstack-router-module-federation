@@ -10,7 +10,8 @@
     "@trmf/vitest-config": "workspace:*"
   },
   "exports": {
-    "./*": "./src/*.tsx"
+    "./*": "./src/*.tsx",
+    "./styles.css": "./src/styles.css"
   },
   "name": "@trmf/auth-feature",
   "private": true,

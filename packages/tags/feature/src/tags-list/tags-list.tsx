@@ -6,7 +6,7 @@ import { TagsListItem } from "./tag-list-item";
 
 export const TagsList = () => {
   return (
-    <div className="m-4 flex flex-col gap-2 gap-2">
+    <div className="tags:m-4 tags:flex tags:flex-col tags:gap-2">
       <InsertTagDialog />
       <Suspense>
         <TagsListQuery />
@@ -21,7 +21,7 @@ const TagsListQuery = () => {
   );
 
   return (
-    <ul className="flex flex-col gap-2">
+    <ul className="tags:flex tags:flex-col tags:gap-2">
       {selectTagsQuery.data.map((tag) => (
         <li key={tag.id}>
           <TagsListItem tag={tag} />
