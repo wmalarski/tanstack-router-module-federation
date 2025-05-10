@@ -33,20 +33,23 @@ const selectTagsFromDb = async ({
   return getPostgrestData(response);
 };
 
+const selectTagsQueryKey = (args: SelectTagsQueryOptionsArgs) => {
+  return ["tags-data-access", "select-tags", args];
+};
+
 export const selectTagsQueryOptions = (args: SelectTagsQueryOptionsArgs) => {
   const supabase = getSupabaseContext();
 
   return queryOptions({
     queryFn: async () => selectTagsFromDb({ ...args, supabase }),
-    queryKey: ["tags-data-access", "select-tags", args],
+    queryKey: selectTagsQueryKey(args),
   });
 };
 
 export type TagModel = Awaited<ReturnType<typeof selectTagsFromDb>>[0];
 
 const invalidateTags = async (queryClient?: QueryClient) => {
-  const options = selectTagsQueryOptions({ limit: 0, offset: 0 });
-  const queryKey = options.queryKey.slice(0, 2);
+  const queryKey = selectTagsQueryKey({ limit: 0, offset: 0 }).slice(0, 2);
   await queryClient?.invalidateQueries({ exact: false, queryKey });
 };
 
@@ -126,11 +129,8 @@ export const updateTagMutationOptions = ({
   const queryClient = use(QueryClientContext);
 
   return {
-    mutationFn: async (args) => {
-      const response = await supabase
-        .from("tags")
-        .update(args)
-        .eq("id", args.tagId);
+    mutationFn: async ({ tagId, ...args }) => {
+      const response = await supabase.from("tags").update(args).eq("id", tagId);
       return getPostgrestData(response);
     },
     onSuccess: async () => {

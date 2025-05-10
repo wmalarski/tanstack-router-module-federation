@@ -34,6 +34,7 @@ export const UpdateTagDialog = ({ tag }: UpdateTagDialogProps) => {
   );
 
   const form = useTagFields({
+    defaultName: tag.name,
     onSubmit: (value) => {
       updateTagMutation.mutate({ ...value, tagId: tag.id });
     },

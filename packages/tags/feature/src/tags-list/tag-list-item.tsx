@@ -23,7 +23,7 @@ export const TagsListItem = ({ tag }: TagsListItemProps) => {
         <CardTitle>{tag.name}</CardTitle>
         <CardDescription>{formatDate(tag.created_at)}</CardDescription>
       </CardHeader>
-      <CardFooter>
+      <CardFooter className="gap-2">
         <UpdateTagDialog tag={tag} />
         <DeleteTagForm tag={tag} />
       </CardFooter>

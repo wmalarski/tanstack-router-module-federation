@@ -16,6 +16,12 @@ type SelectBookmarksByIdsQueryOptionsArgs = {
   bookmarkIds: number[];
 };
 
+export const selectBookmarksByIdsQueryKey = (
+  args: SelectBookmarksByIdsQueryOptionsArgs,
+) => {
+  return ["bookmarks-data-access", "select-bookmarks-by-ids", args];
+};
+
 export const selectBookmarksByIdsQueryOptions = (
   args: SelectBookmarksByIdsQueryOptionsArgs,
 ) => {
@@ -30,12 +36,16 @@ export const selectBookmarksByIdsQueryOptions = (
         .in("id", bookmarkIds);
       return getPostgrestData(response);
     },
-    queryKey: ["bookmarks-data-access", "select-bookmarks-by-ids", args],
+    queryKey: selectBookmarksByIdsQueryKey(args),
   });
 };
 
 type SelectBookmarkQueryOptionsArgs = {
   bookmarkId: number;
+};
+
+const selectBookmarkQueryKey = (args: SelectBookmarkQueryOptionsArgs) => {
+  return ["bookmarks-data-access", "select-bookmark", args];
 };
 
 export const selectBookmarkQueryOptions = (
@@ -53,7 +63,7 @@ export const selectBookmarkQueryOptions = (
         .single();
       return getPostgrestData(response);
     },
-    queryKey: ["bookmarks-data-access", "select-bookmark", args],
+    queryKey: selectBookmarkQueryKey(args),
   });
 };
 
@@ -118,6 +128,12 @@ const selectBookmarksFromDb = async ({
   return result;
 };
 
+const selectBookmarksQueryKey = (args: SelectBookmarksQueryOptionsArgs) => {
+  const supabase = getSupabaseContext();
+
+  return ["bookmarks-data-access", "select-bookmarks", args];
+};
+
 export const selectBookmarksQueryOptions = (
   args: SelectBookmarksQueryOptionsArgs,
 ) => {
@@ -128,18 +144,18 @@ export const selectBookmarksQueryOptions = (
       const response = await selectBookmarksFromDb({ ...args, supabase });
       return getPostgrestData(response);
     },
-    queryKey: ["bookmarks-data-access", "select-bookmarks", args],
+    queryKey: selectBookmarksQueryKey(args),
   });
 };
 
 const invalidateBookmarks = async (queryClient?: QueryClient) => {
   await Promise.all(
     [
-      selectBookmarksQueryOptions({ random: false, tags: [] }),
-      selectBookmarksByIdsQueryOptions({ bookmarkIds: [] }),
-      selectBookmarkQueryOptions({ bookmarkId: 0 }),
+      selectBookmarksQueryKey({ random: false, tags: [] }),
+      selectBookmarksByIdsQueryKey({ bookmarkIds: [] }),
+      selectBookmarkQueryKey({ bookmarkId: 0 }),
     ]
-      .map((options) => options.queryKey.slice(0, -1))
+      .map((queryKey) => queryKey.slice(0, -1))
       .map((queryKey) =>
         queryClient?.invalidateQueries({ exact: false, queryKey }),
       ),

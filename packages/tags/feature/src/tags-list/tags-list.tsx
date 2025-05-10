@@ -6,12 +6,12 @@ import { TagsListItem } from "./tag-list-item";
 
 export const TagsList = () => {
   return (
-    <>
+    <div className="m-4 flex flex-col gap-2 gap-2">
       <InsertTagDialog />
       <Suspense>
         <TagsListQuery />
       </Suspense>
-    </>
+    </div>
   );
 };
 

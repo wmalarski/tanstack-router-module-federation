@@ -14,6 +14,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@trmf/ui/components/alert-dialog";
+import { Button } from "@trmf/ui/components/button";
 import { TrashIcon } from "@trmf/ui/components/icons";
 
 type DeleteTagFormProps = {
@@ -29,9 +30,11 @@ export const DeleteTagForm = ({ tag }: DeleteTagFormProps) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <TrashIcon className="size-4" />
-        Delete
+      <AlertDialogTrigger asChild>
+        <Button>
+          <TrashIcon className="size-4" />
+          Delete
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
