@@ -6,9 +6,10 @@ export const ProtectedLayout = () => {
   return (
     <>
       <UserChangeListener />
-      Protected
       <TopNavbar />
-      <Outlet />
+      <div className="host:mx-auto host:max-w-xl host:p-2">
+        <Outlet />
+      </div>
     </>
   );
 };

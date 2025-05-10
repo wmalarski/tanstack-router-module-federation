@@ -6,7 +6,7 @@ export const TopNavbar = () => {
   const user = useUser();
 
   return (
-    <nav className="host:flex host:gap-2 host:p-2">
+    <nav className="flex flex-row gap-2 p-2">
       <ul>
         <li>
           <Link className="host:[&.active]:font-bold" to="/">
