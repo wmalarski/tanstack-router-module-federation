@@ -1,2 +1,3 @@
-@import "tailwindcss" prefix(auth);
-@source "./**/*.{ts,tsx}";
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(auth);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(auth);

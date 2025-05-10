@@ -1,4 +1,6 @@
-@import "tailwindcss" prefix(appbookmarks);
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(appbookmarks);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(appbookmarks);
 
 :root {
   --colors-brand-100: #ffeeaa;
