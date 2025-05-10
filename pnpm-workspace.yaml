@@ -5,6 +5,6 @@ packages:
   - packages/shared/*
   - packages/supabase/*
   - packages/tags/*
-
 onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
   - esbuild
