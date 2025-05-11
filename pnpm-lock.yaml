@@ -279,6 +279,9 @@ importers:
       '@trmf/bookmarks-data-access':
         specifier: workspace:*
         version: link:../data-access
+      '@trmf/tags-data-access':
+        specifier: workspace:*
+        version: link:../../tags/data-access
       '@trmf/ui':
         specifier: workspace:*
         version: link:../../shared/ui

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@trmf/bookmarks-data-access": "workspace:*",
+    "@trmf/tags-data-access": "workspace:*",
     "@trmf/ui": "workspace:*"
   },
   "devDependencies": {
