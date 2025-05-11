@@ -5,7 +5,6 @@ import "@trmf/bookmarks-feature/styles.css";
 export const ShareBookmarkRoute = () => {
   return (
     <AppContextProvider>
-      ShareBookmarkRoute
       <InsertBookmarkForm />
     </AppContextProvider>
   );

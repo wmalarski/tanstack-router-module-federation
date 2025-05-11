@@ -15,7 +15,7 @@ export const TopNavbar = () => {
         </li>
         <li>
           <Link className="layout:[&.active]:font-bold" to="/tags">
-            About
+            Tags
           </Link>
         </li>
         <li>

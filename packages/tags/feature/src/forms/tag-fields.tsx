@@ -1,3 +1,4 @@
+import { Fieldset, FieldsetRow } from "@trmf/ui/components/fieldset";
 import { Label } from "@trmf/ui/components/label";
 import { useAppForm } from "@trmf/ui/hooks/use-app-form";
 import * as v from "valibot";
@@ -30,8 +31,8 @@ type TagFieldsProps = {
 
 export const TagFields = ({ pending, form }: TagFieldsProps) => {
   return (
-    <div className="tags:flex tags:flex-col tags:gap-6">
-      <div className="tags:grid tags:gap-2">
+    <Fieldset>
+      <FieldsetRow>
         <Label htmlFor="name">Name</Label>
         <form.AppField name="name">
           {(field) => (
@@ -46,7 +47,7 @@ export const TagFields = ({ pending, form }: TagFieldsProps) => {
             />
           )}
         </form.AppField>
-      </div>
-    </div>
+      </FieldsetRow>
+    </Fieldset>
   );
 };

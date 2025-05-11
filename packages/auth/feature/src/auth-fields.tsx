@@ -1,3 +1,4 @@
+import { Fieldset, FieldsetRow } from "@trmf/ui/components/fieldset";
 import { Label } from "@trmf/ui/components/label";
 import { useAppForm } from "@trmf/ui/hooks/use-app-form";
 import * as v from "valibot";
@@ -29,8 +30,8 @@ type AuthFieldsProps = {
 
 export const AuthFields = ({ form }: AuthFieldsProps) => {
   return (
-    <div className="auth:flex auth:flex-col auth:gap-6">
-      <div className="auth:grid auth:gap-2">
+    <Fieldset>
+      <FieldsetRow>
         <Label htmlFor="email">Email</Label>
         <form.AppField name="email">
           {(field) => (
@@ -45,8 +46,8 @@ export const AuthFields = ({ form }: AuthFieldsProps) => {
             />
           )}
         </form.AppField>
-      </div>
-      <div className="auth:grid auth:gap-2">
+      </FieldsetRow>
+      <FieldsetRow>
         <Label htmlFor="password">Password</Label>
         <form.AppField name="password">
           {(field) => (
@@ -60,7 +61,7 @@ export const AuthFields = ({ form }: AuthFieldsProps) => {
             />
           )}
         </form.AppField>
-      </div>
-    </div>
+      </FieldsetRow>
+    </Fieldset>
   );
 };
