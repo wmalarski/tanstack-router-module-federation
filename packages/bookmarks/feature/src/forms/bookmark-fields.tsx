@@ -5,7 +5,7 @@ import {
 } from "@trmf/ui/components/fieldset";
 import { Label } from "@trmf/ui/components/label";
 import { useAppForm } from "@trmf/ui/hooks/use-app-form";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import * as v from "valibot";
 import { BookmarkTagsField } from "./bookmark-tags-field";
 
@@ -178,19 +178,21 @@ export const BookmarkFields = ({ form, pending }: BookmarkFieldsProps) => {
         {/* <FieldError id="preview-error" message={props.result?.errors?.preview} /> */}
       </FieldsetRow>
 
-      <FieldsetRow>
-        <Label>Tags</Label>
-        <form.AppField name="tags">
-          {(field) => (
-            <BookmarkTagsField
-              disabled={pending}
-              onChange={field.setValue}
-              tags={field.state.value}
-            />
-          )}
-        </form.AppField>
-        {/* <FieldError id="preview-error" message={props.result?.errors?.preview} /> */}
-      </FieldsetRow>
+      <Suspense>
+        <FieldsetRow>
+          <Label>Tags</Label>
+          <form.AppField name="tags">
+            {(field) => (
+              <BookmarkTagsField
+                disabled={pending}
+                onChange={field.setValue}
+                tags={field.state.value}
+              />
+            )}
+          </form.AppField>
+          {/* <FieldError id="preview-error" message={props.result?.errors?.preview} /> */}
+        </FieldsetRow>
+      </Suspense>
     </Fieldset>
   );
 };

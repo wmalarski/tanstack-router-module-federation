@@ -46,32 +46,30 @@ export const UpdateTagDialog = ({ tag }: UpdateTagDialogProps) => {
   };
 
   return (
-    <>
-      <Dialog onOpenChange={setIsOpen} open={isOpen}>
-        <DialogTrigger asChild>
-          <Button>
-            <PencilIcon className="tags:size-4" />
-            Update
+    <Dialog onOpenChange={setIsOpen} open={isOpen}>
+      <DialogTrigger asChild>
+        <Button>
+          <PencilIcon className="tags:size-4" />
+          Update
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Update tag</DialogTitle>
+        </DialogHeader>
+        <form id={formId} onSubmit={onSubmit}>
+          <TagFields form={form} pending={updateTagMutation.isPending} />
+        </form>
+        <DialogFooter>
+          <Button
+            disabled={updateTagMutation.isPending}
+            form={formId}
+            type="submit"
+          >
+            Save
           </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Update tag</DialogTitle>
-          </DialogHeader>
-          <form id={formId} onSubmit={onSubmit}>
-            <TagFields form={form} pending={updateTagMutation.isPending} />
-          </form>
-          <DialogFooter>
-            <Button
-              disabled={updateTagMutation.isPending}
-              form={formId}
-              type="submit"
-            >
-              Save
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };

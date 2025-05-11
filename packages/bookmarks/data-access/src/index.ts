@@ -128,9 +128,11 @@ const selectBookmarksFromDb = async ({
   return result;
 };
 
-const selectBookmarksQueryKey = (args: SelectBookmarksQueryOptionsArgs) => {
-  const supabase = getSupabaseContext();
+export type BookmarkWithTagsModel = NonNullable<
+  Awaited<ReturnType<typeof selectBookmarksFromDb>>["data"]
+>[0];
 
+const selectBookmarksQueryKey = (args: SelectBookmarksQueryOptionsArgs) => {
   return ["bookmarks-data-access", "select-bookmarks", args];
 };
 
@@ -272,7 +274,7 @@ type UpdateBookmarkMutationOptionsVariables =
     bookmarkId: number;
   };
 
-export const updateTagMutationOptions = (): MutationOptions<
+export const updateBookmarkMutationOptions = (): MutationOptions<
   SupabaseDatabase["public"]["Tables"]["bookmarks"]["Update"],
   Error,
   UpdateBookmarkMutationOptionsVariables

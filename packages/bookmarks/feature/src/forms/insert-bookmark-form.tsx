@@ -1,9 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
-import { BookmarkFields, useBookmarkFields } from "./bookmark-fields";
 import { insertBookmarkMutationOptions } from "@trmf/bookmarks-data-access";
+import { Button } from "@trmf/ui/components/button";
+import { type ComponentProps, useId } from "react";
+import { BookmarkFields, useBookmarkFields } from "./bookmark-fields";
 
 export const InsertBookmarkForm = () => {
   const insertBookmarkMutation = useMutation(insertBookmarkMutationOptions());
+
+  const formId = useId();
 
   const form = useBookmarkFields({
     onSubmit: (value) => {
@@ -11,7 +15,21 @@ export const InsertBookmarkForm = () => {
     },
   });
 
+  const onSubmit: ComponentProps<"form">["onSubmit"] = async (event) => {
+    event.preventDefault();
+    await form.handleSubmit();
+  };
+
   return (
-    <BookmarkFields form={form} pending={insertBookmarkMutation.isPending} />
+    <form id={formId} onSubmit={onSubmit}>
+      <BookmarkFields form={form} pending={insertBookmarkMutation.isPending} />
+      <Button
+        disabled={insertBookmarkMutation.isPending}
+        form={formId}
+        type="submit"
+      >
+        Save
+      </Button>
+    </form>
   );
 };
