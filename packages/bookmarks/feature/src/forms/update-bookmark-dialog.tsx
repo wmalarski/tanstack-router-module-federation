@@ -14,6 +14,7 @@ import {
 } from "@trmf/ui/components/dialog";
 import { PencilIcon } from "@trmf/ui/components/icons";
 import { type ComponentProps, useId, useMemo, useState } from "react";
+import { useBookmarksHistory } from "../contexts/bookmarks-history";
 import { BookmarkFields, useBookmarkFields } from "./bookmark-fields";
 
 type UpdateBookmarkDialogProps = {
@@ -37,7 +38,7 @@ export const UpdateBookmarkDialog = ({
   const history = useBookmarksHistory();
 
   const onClick = () => {
-    history().addToHistory(bookmark.id);
+    history.send({ id: bookmark.id, type: "add" });
   };
 
   const updateBookmarkMutation = useMutation(updateBookmarkMutationOptions());
@@ -59,7 +60,7 @@ export const UpdateBookmarkDialog = ({
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button onClick={onClick}>
           <PencilIcon className="bookmarks:size-4" />
           Update
         </Button>

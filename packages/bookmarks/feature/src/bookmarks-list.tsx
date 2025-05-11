@@ -1,8 +1,13 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { selectBookmarksQueryOptions } from "@trmf/bookmarks-data-access";
+import { BookmarksHistoryProvider } from "./contexts/bookmarks-history";
 
 export const BookmarksList = () => {
-  return <BookmarksListContent />;
+  return (
+    <BookmarksHistoryProvider>
+      <BookmarksListContent />
+    </BookmarksHistoryProvider>
+  );
 };
 
 const BookmarksListContent = () => {
