@@ -1,1 +1,6 @@
-export { PencilIcon, PlusIcon, TrashIcon } from "lucide-react";
+export {
+  ChevronRightIcon,
+  PencilIcon,
+  PlusIcon,
+  TrashIcon,
+} from "lucide-react";

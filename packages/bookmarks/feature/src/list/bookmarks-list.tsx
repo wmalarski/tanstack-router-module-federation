@@ -1,12 +1,12 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
-  BookmarkWithTagsModel,
+  type BookmarkWithTagsModel,
+  type SelectBookmarksQueryOptionsArgs,
   selectBookmarksQueryOptions,
-  SelectBookmarksQueryOptionsArgs,
 } from "@trmf/bookmarks-data-access";
-import { BookmarksHistoryProvider } from "../contexts/bookmarks-history";
 import { Skeleton } from "@trmf/ui/components/skeleton";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import { BookmarksHistoryProvider } from "../contexts/bookmarks-history";
 
 export const BookmarksList = () => {
   return (
