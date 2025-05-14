@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0-beta.1/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.0-beta.4/schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -11,7 +11,12 @@
     }
   },
   "files": {
-    "includes": ["**", "!**/app.css", "!**/supabase/util/src/types.ts"]
+    "includes": [
+      "**",
+      "!**/app.css",
+      "!**/supabase/util/src/types.ts",
+      "!**/src/styles.css"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -27,8 +32,11 @@
       "a11y": {
         "noSvgWithoutTitle": "off"
       },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      },
       "nursery": {
-        "noUselessStringRaw": "error",
         "useSortedClasses": "error"
       },
       "style": {

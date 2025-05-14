@@ -5,6 +5,7 @@ import { ChevronRightIcon } from "@trmf/ui/components/icons";
 import { Link } from "@trmf/ui/components/link";
 import { useDateFormatter } from "@trmf/ui/lib/date";
 import { type ComponentProps, type PropsWithChildren, useMemo } from "react";
+import { CompleteDialog } from "../complete/complete-dialog";
 import { useBookmarksHistory } from "../contexts/bookmarks-history";
 import { DeleteBookmarkForm } from "../forms/delete-bookmark-form";
 import { UpdateBookmarkDialog } from "../forms/update-bookmark-dialog";
@@ -67,7 +68,7 @@ export const BookmarkListItem = ({ bookmark }: BookmarkListItemProps) => {
           size="sm"
         >
           <ChevronRightIcon className="size-4" />
-          {t("bookmarks.item.details")}
+          Details
         </LinkButton>
       </CardFooter>
     </Card>

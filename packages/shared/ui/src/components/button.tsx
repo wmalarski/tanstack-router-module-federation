@@ -76,4 +76,4 @@ function ButtonLink({
   );
 }
 
-export { Button, buttonVariants };
+export { Button, buttonVariants, ButtonLink };

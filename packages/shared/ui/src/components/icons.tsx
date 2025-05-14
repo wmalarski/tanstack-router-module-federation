@@ -1,4 +1,5 @@
 export {
+  CheckIcon,
   ChevronRightIcon,
   PencilIcon,
   PlusIcon,

@@ -10,7 +10,7 @@ function useBookmarksHistoryStore() {
   return useMemo(
     () =>
       createStore({
-        context: { ids: new Array<number>() },
+        context: { ids: [] as number[] },
         on: {
           add: (context, { id }: { id: number }) => {
             const ids = [...context.ids];

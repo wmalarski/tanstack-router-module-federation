@@ -49,7 +49,7 @@ export const BookmarkFields = ({ form, pending }: BookmarkFieldsProps) => {
   const urlRef = useRef<HTMLInputElement>(null);
   const previewRef = useRef<HTMLInputElement>(null);
 
-  const onCheckSubmit = (data: BookmarkFieldsData) => {
+  const _onCheckSubmit = (data: BookmarkFieldsData) => {
     if (data.title && titleRef.current) {
       titleRef.current.value = data.title;
     }
