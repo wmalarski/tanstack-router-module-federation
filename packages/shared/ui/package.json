@@ -7,14 +7,14 @@
     "@radix-ui/react-slot": "^1.2.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.509.0",
-    "tailwind-merge": "^3.2.0",
+    "lucide-react": "^0.510.0",
+    "tailwind-merge": "^3.3.0",
     "tw-animate-css": "^1.2.9"
   },
   "devDependencies": {
     "@trmf/typescript-config": "workspace:*",
     "@trmf/vitest-config": "workspace:*",
-    "@types/node": "^22.15.17",
+    "@types/node": "^22.15.18",
     "tailwindcss": "^4.1.6"
   },
   "exports": {
