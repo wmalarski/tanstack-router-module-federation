@@ -1,8 +1,9 @@
+import { Link } from "@tanstack/react-router";
 import type { BookmarkWithTagsModel } from "@trmf/bookmarks-data-access";
 import { Badge } from "@trmf/ui/components/badge";
+import { ButtonLink } from "@trmf/ui/components/button";
 import { Card, CardContent, CardFooter } from "@trmf/ui/components/card";
 import { ChevronRightIcon } from "@trmf/ui/components/icons";
-import { Link } from "@trmf/ui/components/link";
 import { useDateFormatter } from "@trmf/ui/lib/date";
 import { type ComponentProps, type PropsWithChildren, useMemo } from "react";
 import { CompleteDialog } from "../complete/complete-dialog";
@@ -61,15 +62,18 @@ export const BookmarkListItem = ({ bookmark }: BookmarkListItemProps) => {
         <DeleteBookmarkForm bookmark={bookmark} />
         <CompleteDialog bookmark={bookmark} />
         <UpdateBookmarkDialog bookmark={bookmark} />
-        <LinkButton
+        <ButtonLink
+          asChild
           color="secondary"
-          href={paths.bookmark(bookmark.id)}
+          // href={paths.bookmark(bookmark.id)}
           onClick={onDetailsClick}
           size="sm"
         >
-          <ChevronRightIcon className="size-4" />
-          Details
-        </LinkButton>
+          <Link to="/">
+            <ChevronRightIcon className="size-4" />
+            Details
+          </Link>
+        </ButtonLink>
       </CardFooter>
     </Card>
   );
@@ -199,7 +203,7 @@ const BookmarkLinks = ({ bookmark }: BookmarkLinksProps) => {
     history.send({ id: bookmark.id, type: "add" });
   };
 
-  const commonProps: Partial<ComponentProps<typeof Link>> = {
+  const commonProps: Partial<ComponentProps<typeof ButtonLink>> = {
     color: "secondary",
     onClick,
     rel: "noopener noreferrer",
@@ -210,28 +214,28 @@ const BookmarkLinks = ({ bookmark }: BookmarkLinksProps) => {
   return (
     <ul className="flex flex-row flex-wrap gap-2">
       <li>
-        <Link
+        <ButtonLink
           {...commonProps}
           href={`https://www.youtube.com/results?${new URLSearchParams({ search_query: bookmark.title })}`}
         >
           Youtube
-        </Link>
+        </ButtonLink>
       </li>
       <li>
-        <Link
+        <ButtonLink
           {...commonProps}
           href={`https://www.youtube.com/results?${new URLSearchParams({ q: bookmark.title })}`}
         >
           Google
-        </Link>
+        </ButtonLink>
       </li>
       <li>
-        <Link
+        <ButtonLink
           {...commonProps}
           href={`https://open.spotify.com/search/${bookmark.title}`}
         >
           Spotify
-        </Link>
+        </ButtonLink>
       </li>
     </ul>
   );
