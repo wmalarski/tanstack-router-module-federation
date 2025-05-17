@@ -3,9 +3,22 @@ import type { BookmarkWithTagsModel } from "@trmf/bookmarks-data-access";
 import { Badge } from "@trmf/ui/components/badge";
 import { ButtonLink } from "@trmf/ui/components/button";
 import { Card, CardContent, CardFooter } from "@trmf/ui/components/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@trmf/ui/components/carousel";
 import { ChevronRightIcon } from "@trmf/ui/components/icons";
+import { useIsLink } from "@trmf/ui/hooks/use-is-link";
 import { useDateFormatter } from "@trmf/ui/lib/date";
-import { type ComponentProps, type PropsWithChildren, useMemo } from "react";
+import {
+  type ComponentProps,
+  type PropsWithChildren,
+  useMemo,
+  useRef,
+} from "react";
 import { CompleteDialog } from "../complete/complete-dialog";
 import { useBookmarksHistory } from "../contexts/bookmarks-history";
 import { DeleteBookmarkForm } from "../forms/delete-bookmark-form";
@@ -93,7 +106,7 @@ type GridLinkProps = {
 };
 
 const GridLink = ({ bookmarkId, href }: GridLinkProps) => {
-  const isLink = createIsLink(() => href);
+  const isLink = useIsLink(href);
 
   const history = useBookmarksHistory();
 
@@ -101,13 +114,15 @@ const GridLink = ({ bookmarkId, href }: GridLinkProps) => {
     history.send({ id: bookmarkId, type: "add" });
   };
 
-  return (
-    <Show fallback={<GridText>{href}</GridText>} when={isLink()}>
-      <Link className="break-words" hover={true} href={href} onClick={onClick}>
+  if (isLink) {
+    return (
+      <Link className="break-words" href={href} onClick={onClick} to="/">
         {href}
       </Link>
-    </Show>
-  );
+    );
+  }
+
+  return <GridText>{href}</GridText>;
 };
 
 type BookmarkPreviewProps = {
@@ -136,11 +151,13 @@ const BookmarkPreview = ({ bookmark }: BookmarkPreviewProps) => {
     <div className="relative mx-auto my-4 w-64">
       <Carousel>
         <CarouselContent>
-          <For each={images()}>
-            {(image) => (
-              <BookmarkPreviewImage image={image} title={bookmark.title} />
-            )}
-          </For>
+          {images.map((image) => (
+            <BookmarkPreviewImage
+              image={image}
+              key={image}
+              title={bookmark.title}
+            />
+          ))}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
@@ -155,23 +172,26 @@ type BookmarkPreviewImageProps = {
 };
 
 const BookmarkPreviewImage = ({ image, title }: BookmarkPreviewImageProps) => {
-  let el: HTMLDivElement | undefined;
+  const element = useRef<HTMLDivElement>(null);
+
   const useVisibilityObserver = createVisibilityObserver({ threshold: 0.1 });
-  const visible = useVisibilityObserver(() => el);
-  const shouldShow = createMemo<boolean>((previous) => previous || visible());
+
+  const visible = useVisibilityObserver(() => element);
+
+  const shouldShow = useMemo((previous) => previous || visible, [visible]);
 
   return (
-    <CarouselItem className="min-h-72" ref={el}>
-      <Show when={shouldShow()}>
+    <CarouselItem className="min-h-72" ref={element}>
+      {shouldShow ? (
         <img
-          alt={t("bookmarks.item.preview", { preview: title })}
+          alt={`Preview ${title}`}
           className="h-64 text-base-300"
           height={250}
           loading="lazy"
           src={image}
           width={250}
         />
-      </Show>
+      ) : null}
     </CarouselItem>
   );
 };
